@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap");
+@import url('https://fonts.cdnfonts.com/css/palace-script-mt');
+
+* {
+  box-sizing: border-box;
+  --antoinette-gold: rgb(185, 157, 0);
+  --antoinette-font: 'Comfortaa';
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+html, button {
+  font-family: "Comfortaa", "sans-serif";
+}
+
+body {
+  margin: 0;
+  position: relative;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+.customToast.toast-success {
+  background-color: var(--antoinette-gold);
+}

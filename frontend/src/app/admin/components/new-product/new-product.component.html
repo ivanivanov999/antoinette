@@ -1,0 +1,84 @@
+<div class="checkout-container">
+  <div class="container">
+    <form
+      [formGroup]="newItemForm"
+      (ngSubmit)="uploadItem()"
+      enctype="multipart/form-data"
+    >
+      <div class="form">
+        <div class="input-container">
+          <label>Име</label>
+          <div class="input">
+            <input type="text" placeholder="Име" formControlName="name" />
+          </div>
+          <div class="error-list" *ngIf="fc['name'].errors && isSubmitted">
+            <div *ngIf="fc['name'].errors['required']">Задължително поле</div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Категория</label>
+          <!--
+            <div class="input">
+            <input
+              type="text"
+              placeholder="Категория"
+              formControlName="category"
+            />
+          </div>
+          -->
+          <select formControlName="category" class="select-category">
+            <option value="" disabled selected>Избери категория</option>
+            <option value="Сервизи за хранене">Сервизи за хранене</option>
+            <option value="Прибори">Прибори</option>
+            <option value="Шахове и табли">Шахове и табли</option>
+          </select>
+          <div class="error-list" *ngIf="fc['category'].errors && isSubmitted">
+            <div *ngIf="fc['category'].errors['required']">
+              Задължително поле
+            </div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Описание</label>
+          <div class="input">
+            <textarea
+              class="description"
+              placeholder="Описание"
+              formControlName="description"
+              rows="5"
+            ></textarea>
+          </div>
+          <div class="error-list" *ngIf="fc['description'].errors && isSubmitted">
+            <div *ngIf="fc['description'].errors['required']">
+              Задължително поле
+            </div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Цена</label>
+          <div class="input">
+            <input type="number" placeholder="Цена" formControlName="price" />
+          </div>
+          <div class="error-list" *ngIf="fc['price'].errors && isSubmitted">
+            <div *ngIf="fc['price'].errors['required']">Задължително поле</div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label class="fileInput" for="fileInput">Снимки</label>
+            <input #fileInput id="fileInput" type="file" multiple (change)="showImage($event)"/>
+        </div>
+        <div class="button">
+          <button type="submit">Качи продукт</button>
+        </div>
+      </div>
+    </form>
+    <div class="photo-container">
+      <img class="main-photo" [src]="imagesPreview[0]">
+      <div class="photos">
+        <ng-container *ngFor="let image of imagesPreview; let i = index">
+          <img class="photo" *ngIf="i > 0" [src]="image" alt="">
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

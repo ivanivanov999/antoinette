@@ -1,0 +1,19 @@
+.title-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+
+.inner-title-container {
+  width: 80%;
+  display: flex;
+}
+
+.pagetitle {
+  width: 80%;
+  color: var(--antoinette-gold);
+  font-weight: 600;
+  font-size: 2rem;
+  display: flex;
+}

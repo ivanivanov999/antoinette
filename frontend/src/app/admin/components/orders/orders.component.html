@@ -1,0 +1,41 @@
+<div class="cart-container">
+  <div class="container">
+    <ng-container *ngIf="orders$ | async as orders">
+      <ul *ngFor="let order of orders" [ngClass]="{'red': order.status === 'Изчаква потвърждение'}">
+        <div class="details">
+          <div class="userdetails">
+            <div class="detail">Име: {{order.name}}</div>
+            <div class="detail">Телефон: {{order.phone}}</div>
+            <div class="detail">Адрес: {{order.address}}</div>
+          </div>
+          <div class="orderdetails">
+            <div class="detail">Статус: {{order.status}}</div>
+            <div class="detail">Дата: {{order.createdAt | date : 'medium'}}</div>
+            <div class="detail">Крайна сума: {{order.totalPrice | number : "1.2-2" }}</div>
+          </div>
+        </div>
+        <li *ngFor="let cartItem of order.items">
+          <img [src]="cartItem.item.imageUrl" [alt]="cartItem.item.name" />
+          <div class="content">
+            <a routerLink="/item/{{ cartItem.item.id }}">
+              <div class="name">
+                {{ cartItem.item.name }}
+              </div>
+              <div class="description">
+                {{ cartItem.item.description }}
+              </div>
+            </a>
+            <div class="quantity">
+              <div class="currentQuantity">
+                {{ cartItem.quantity }}
+              </div>
+            </div>
+            <div class="price">
+              <span> BGN {{ cartItem.price | number : "1.2-2" }} </span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+</div>

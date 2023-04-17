@@ -1,0 +1,183 @@
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background: black;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  height: 3rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo a{
+  font-weight: normal;
+  border-bottom: none;
+}
+
+.logo a:hover{
+  text-decoration: none;
+}
+
+.divider {
+  margin: 1rem 0 1rem 0;
+  height: 2rem;
+  width: 0.02rem;
+  background-color: white;
+}
+
+.subtitle {
+  color: white;
+  padding: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.title{
+  font-family: 'Palace Script MT', sans-serif;
+  font-size: 3rem;
+  color: var(--antoinette-gold);
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+a {
+  color: white;
+  display: inline-block;
+  padding: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+a:hover {
+  cursor: pointer;
+  border-bottom: 2px solid white;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  align-items: center;
+  height: 3rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.quantitybadge {
+  background-color: var(--antoinette-gold);
+  height: 1.7rem;
+  min-width: 1.7rem;
+  border-radius: 5rem;
+  font-size: 0.9rem;
+  color: white;
+  font-weight: 600;
+  margin-left: -0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carticon {
+  margin-left: -0.2rem;
+}
+
+.quantity {
+  position: relative;
+  top: 1px;
+  padding: 0.3rem;
+}
+
+.bar {
+  display: block;
+  width: 35px;
+  height: 5px;
+  margin: 6px 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
+}
+
+.hamburger {
+  display: block;
+  padding: 1rem;
+  cursor: pointer;
+  transform: scale(0.7);
+  transition: all 0.2s ease;
+}
+
+.hamburger:hover {
+  transform: scale(0.8);
+}
+
+.hamburger:active {
+  transform: scale(0.65);
+}
+
+.menu {
+  width: 100%;
+  height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(1rem);
+  background: rgba(0, 0, 0, 0.701);
+  font-weight: 600;
+  transition: height 0.1s ease;
+  overflow: hidden;
+}
+
+.menu-container {
+  width: 80%;
+  display: flex;
+}
+
+.navmenu {
+  flex:6;
+  display: flex;
+}
+
+.usermenu {
+  flex:4;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menubutton {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  height: 2.5rem;
+}
+
+.menu.active {
+  height: 2.5rem;
+}
+
+.menubutton:hover {
+  border-bottom: 2px solid white;
+}

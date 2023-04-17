@@ -1,0 +1,101 @@
+<app-title [title]="'Нова поръчка'"></app-title>
+<div class="checkout-container">
+  <div class="container">
+    <form [formGroup]="checkoutForm" (ngSubmit)="createOrder()">
+      <div class="form">
+        <div class="title">Детайли</div>
+        <div class="input-container">
+          <label>Име и фамилия</label>
+          <div class="input">
+            <input
+              type="text"
+              placeholder="Име и фамилия"
+              formControlName="name"
+            />
+          </div>
+          <div class="error-list" *ngIf="fc['name'].errors">
+            <div *ngIf="fc['name'].errors['required']">Задължително поле</div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Адрес за доставка</label>
+          <div class="input">
+            <input
+              type="text"
+              placeholder="Адрес за доставка"
+              formControlName="address"
+            />
+          </div>
+          <div class="error-list" *ngIf="fc['address'].errors">
+            <div *ngIf="fc['address'].errors['required']">
+              Задължително поле
+            </div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Телефон за връзка</label>
+          <div class="input">
+            <input
+              type="tel"
+              placeholder="Телефон за връзка"
+              formControlName="phone"
+            />
+          </div>
+          <div class="error-list" *ngIf="fc['phone'].errors">
+            <div *ngIf="fc['phone'].errors['required']">Задължително поле</div>
+          </div>
+        </div>
+        <div class="button">
+          <button type="submit">Направи поръчка</button>
+        </div>
+      </div>
+    </form>
+    <ul *ngIf="cart.items.length">
+      <div class="title">Продукти</div>
+      <li *ngFor="let cartItem of cart.items">
+        <img [src]="cartItem.item.imageUrl" [alt]="cartItem.item.name" />
+        <div class="content">
+          <a routerLink="/item/{{ cartItem.item.id }}">
+            <div class="name">
+              {{ cartItem.item.name }}
+            </div>
+          </a>
+          <div class="quantity">
+            <div class="currentQuantity">
+              {{ cartItem.quantity }}
+            </div>
+          </div>
+          <div class="price">
+            <span> BGN {{ cartItem.price | number : "1.2-2" }} </span>
+          </div>
+        </div>
+      </li>
+      <div class="totalinfo" *ngIf="delivery$ | async as deliveries">
+        <div class="totalinfocontainer">
+          <div class="names">
+            <div class="subtotal">
+              Междинна сума:
+            </div>
+            <div class="deliveryPrice">
+              Цена за доставка:
+            </div>
+            <div class="total">
+              Общо:
+            </div>
+          </div>
+          <div class="values">
+            <div class="subtotal">
+              {{cart.totalPrice | number : "1.2-2" }} лв.
+            </div>
+            <div class="deliveryPrice">
+              {{deliveries[0].price | number : "1.2-2" }} лв.
+            </div>
+            <div class="total">
+              {{cart.totalPrice + deliveries[0].price | number : "1.2-2" }} лв.
+            </div>
+          </div>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>

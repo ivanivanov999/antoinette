@@ -1,0 +1,40 @@
+<div class="highlight">
+  <div class="highlightphoto">
+    <img [src]="cover.imageUrl" alt="">
+  </div>
+  <div class="quote">
+    {{cover.quote}}
+    <div class="quoteauthor">
+      {{cover.author}}
+    </div>
+  </div>
+</div>
+<app-title [title]="'Избрани от нас'"></app-title>
+<div class="featured-container">
+  <ul *ngIf="items$ | async as items" class="scrollContainer">
+    <button class="scrollleft side" (click)="scrollLeft()"><span>&#60;</span></button>
+    <li *ngFor="let item of items">
+      <a routerLink="/item/{{ item.id }}">
+        <img [src]="item.imageUrl[0]" [alt]="item.name" />
+        <div class="content">
+          <div class="name">
+            {{ item.name }}
+          </div>
+          <div class="description">
+            {{ item.description }}
+          </div>
+          <div class="price">
+            <span>
+              BGN {{ item.price | number : "1.2-2" }}
+            </span>
+          </div>
+        </div>
+      </a>
+    </li>
+    <button class="scrollright side" (click)="scrollRight()"><span>&#62;</span></button>
+  </ul>
+</div>
+<div class="all-container">
+  <div class="all">
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<app-categories></app-categories>
+<app-title [title]="category"></app-title>
+<div class="category-container">
+  <div class="container">
+    <ul *ngIf="items$ | async as items">
+      <li *ngFor="let item of items">
+        <a routerLink="/item/{{ item.id }}">
+          <img [src]="item.imageUrl[0]" [alt]="item.name" />
+          <div class="content">
+            <div class="name">
+              {{ item.name }}
+            </div>
+            <div class="description">
+              {{ item.description }}
+            </div>
+            <div class="price">
+              <span>
+                BGN {{ item.price | number : "1.2-2" }}
+              </span>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

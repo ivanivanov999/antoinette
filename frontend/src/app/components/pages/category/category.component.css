@@ -1,0 +1,75 @@
+.category-container {
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 80%;
+  background-color: whitesmoke;
+}
+
+ul {
+  display: flex;
+  justify-content: flex-start;
+  list-style-type: none;
+  padding: 1.5rem;
+  background-color: whitesmoke;
+  margin: 0;
+}
+
+li a {
+  height: 25rem;
+  width: 17rem;
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: black;
+  background-color: white;
+  padding: 0.8rem;
+}
+
+li a:hover {
+  opacity: 0.6;
+}
+
+li a img {
+  object-fit: cover;
+  height: 245px;
+  width: 245px;
+}
+
+.content {
+  margin-top: 0.3rem;
+  padding: 0.5rem 0;
+  position: relative;
+  height: 7.5rem;
+}
+
+.price {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-weight: 600;
+}
+
+.description {
+  margin-top: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+}
+
+.name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--antoinette-gold);
+  font-weight: 600;
+}

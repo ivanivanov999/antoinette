@@ -1,0 +1,21 @@
+<div class="item-container">
+  <div class="container" *ngIf="item$ | async as item">
+    <div class="picture">
+      <img [src]="item.imageUrl[0]" alt="" />
+    </div>
+    <div class="info-container">
+      <div class="info">
+        <div class="name">{{ item.name }}</div>
+        <div class="description">{{ item.description }}</div>
+        <div class="origins">{{ item.origins }}</div>
+      </div>
+      <div class="buy-container">
+        <div class="buy">
+          <div class="price">BGN {{ item.price | number : "1.2-2" }}</div>
+          <button class="addbutton" (click)="addToCart(item)">
+            <span class="add active">Добави в количката</span><span class="added">&#10003; Добавено</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

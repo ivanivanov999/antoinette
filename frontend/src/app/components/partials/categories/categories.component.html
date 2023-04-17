@@ -1,0 +1,14 @@
+<div class="category-container">
+  <div class="container">
+    <ul>
+      <li *ngFor="let item of categories; let i = index">
+        <a routerLink="/category/{{ item.name }}" id="{{item.name}}" (click)="activateCategory(item.name)" class="category">
+          <img [src]="item.imageUrl" [alt]="item.name" />
+          <div class="name">
+            {{ item.name | uppercase}}
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

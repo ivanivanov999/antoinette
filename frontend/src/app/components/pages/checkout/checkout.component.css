@@ -1,0 +1,196 @@
+.checkout-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.container {
+  width: 80%;
+  display: flex;
+}
+
+form {
+  height: 100%;
+  flex:1.5;
+}
+
+.form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  padding: 5rem 3rem;
+  background-color: black;
+  color: white;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+input {
+  border: 0.1rem solid black;
+  background-color: white;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.2rem;
+  border-radius: 5rem;
+}
+
+label {
+  align-self: flex-start;
+  width: 100%;
+  font-size: 1.3rem;
+  text-indent: 1rem;
+}
+
+.input {
+  width: 100%;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+
+
+.button button{
+  margin-top: 2rem;
+  width: 70%;
+  align-self: center;
+  font-size: 1.3rem;
+  padding: 1rem 1rem;
+  border: none;
+  background-color: var(--antoinette-gold);
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 5rem;
+  transition: all 0.5s ease;
+  color: white;
+}
+
+.button button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.button button:active {
+  transform: scale(0.95);
+}
+
+.error-list {
+  color: rgb(164, 3, 3);
+  font-weight: 600;
+  text-indent: 1rem;
+}
+
+.title {
+  color: var(--antoinette-gold);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  align-self: center;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style-type: none;
+  background-color: whitesmoke;
+  flex: 2;
+  padding: 5rem 1rem;
+  margin: 0;
+}
+
+ul .title {
+  margin-bottom: 3rem;
+  align-self: center;
+  color: black;
+}
+
+li {
+  margin-bottom: 1rem;
+  display: flex;
+  color: black;
+  background-color: white;
+  padding: 0.5rem;
+  height: 8rem;
+  width: 100%;
+}
+
+li a:hover {
+  opacity: 0.6;
+}
+
+li img{
+  object-fit: cover;
+  height: 7rem;
+  width: 7rem;
+}
+
+li .content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content a{
+  flex:3;
+  text-align: center;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  flex:1;
+}
+
+.currentQuantity {
+  width: 3rem;
+  text-align: center;
+}
+
+.price {
+  flex:1;
+}
+
+.name {
+  color: var(--antoinette-gold);
+  font-weight: 600;
+}
+
+.totalinfo {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.totalinfocontainer {
+  display: flex;
+  align-self: flex-end;
+  gap: 2rem;
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 0.8rem;
+}
+
+.values {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 10rem;
+  row-gap: 0.8rem;
+}
+
+.total {
+  font-size: 1.2rem;
+  font-weight: 600;
+}

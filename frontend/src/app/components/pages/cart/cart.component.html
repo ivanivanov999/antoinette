@@ -1,0 +1,50 @@
+<app-title [title]="'Моята количка'"></app-title>
+<div class="cart-container">
+  <div class="container">
+    <ng-container *ngIf="cart$ | async as cart">
+      <ul *ngIf="cart.items.length">
+        <li *ngFor="let cartItem of cart.items">
+          <img [src]="cartItem.item.imageUrl" [alt]="cartItem.item.name" />
+          <div class="content">
+            <a routerLink="/item/{{ cartItem.item.id }}">
+              <div class="name">
+                {{ cartItem.item.name }}
+              </div>
+              <div class="description">
+                {{ cartItem.item.description }}
+              </div>
+            </a>
+            <div class="quantity">
+              <button (click)="decreaseQuantity(cartItem.item.id)">-</button>
+              <div class="currentQuantity">
+                {{ cartItem.quantity }}
+              </div>
+              <button (click)="increaseQuantity(cartItem.item.id)">+</button>
+            </div>
+            <div class="price">
+              <span> BGN {{ cartItem.price | number : "1.2-2" }} </span>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul *ngIf="!cart.items.length">
+        <li>
+          <div class="empty">
+            <div class="emptytext">Няма добавени продукти в кошницата ☹️</div>
+          </div>
+        </li>
+      </ul>
+      <div class="proceed">
+        <div class="proceedInfo">
+          <div class="totalCount">
+            Общ брой продукти: {{cart.totalCount}}
+          </div>
+          <div class="totalPrice">
+            Междинна сума: {{cart.totalPrice | number : "1.2-2" }} лв.
+          </div>
+        </div>
+        <button (click)="proceed()" [disabled]="cart.totalPrice === 0">Към завършване на поръчка</button>
+      </div>
+    </ng-container>
+  </div>
+</div>

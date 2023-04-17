@@ -1,0 +1,114 @@
+<app-title [title]="'Вход'"></app-title>
+<div class="login-container">
+  <div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <div class="form login">
+        <div class="title">Съществуващ потребител</div>
+        <div class="input-container">
+          <label>Имейл</label>
+          <div class="input">
+            <input type="email" placeholder="Имейл" formControlName="email" />
+          </div>
+          <div class="error-list" *ngIf="fc['email'].errors && isSubmitted">
+            <div *ngIf="fc['email'].errors['required']">Задължително поле</div>
+            <div *ngIf="fc['email'].errors['email']">Невалиден Email</div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Парола</label>
+          <div class="input">
+            <input
+              type="password"
+              placeholder="Парола"
+              formControlName="password"
+            />
+          </div>
+          <div class="error-list" *ngIf="fc['password'].errors && isSubmitted">
+            <div *ngIf="fc['password'].errors['required']">Задължително поле</div>
+          </div>
+        </div>
+        <div class="button">
+          <button class="submit" type="submit">Вход</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Register Form -->
+
+    <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+      <div class="form register">
+        <div class="title">Нов потребител</div>
+        <div class="input-container">
+          <label>Име и фамилия</label>
+          <div class="input">
+            <input type="text" placeholder="Име и фамилия" formControlName="name" />
+          </div>
+          <div class="error-list" *ngIf="registerFc['name'].errors && registerIsSubmitted">
+            <div *ngIf="registerFc['name'].errors['required']">Задължително поле</div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Имейл</label>
+          <div class="input">
+            <input type="email" placeholder="Имейл" formControlName="email" />
+          </div>
+          <div class="error-list" *ngIf="registerFc['email'].errors && registerIsSubmitted">
+            <div *ngIf="registerFc['email'].errors['required']">Задължително поле</div>
+            <div *ngIf="registerFc['email'].errors['email']">Невалиден имейл адрес</div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Адрес за доставка</label>
+          <div class="input">
+            <input type="text" placeholder="Адрес за доставка" formControlName="address" />
+          </div>
+          <div class="error-list" *ngIf="registerFc['address'].errors && registerIsSubmitted">
+            <div *ngIf="registerFc['address'].errors['required']">Задължително поле</div>
+            <div *ngIf="registerFc['address'].errors['minlength']">Адресът трябва да съдържа най-малко 10 символа</div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Телефон за връзка</label>
+          <div class="input">
+            <input type="tel" placeholder="Телефон за връзка" formControlName="phone" />
+          </div>
+          <div class="error-list" *ngIf="registerFc['phone'].errors && registerIsSubmitted">
+            <div *ngIf="registerFc['phone'].errors['required']">Задължително поле</div>
+            <div *ngIf="registerFc['phone'].errors['minlength']">Невалиден мобилен номер</div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Парола</label>
+          <div class="input">
+            <input
+              type="password"
+              placeholder="Парола"
+              formControlName="password"
+            />
+          </div>
+          <div class="error-list" *ngIf="registerFc['password'].errors && registerIsSubmitted">
+            <div *ngIf="registerFc['password'].errors['required']">Задължително поле</div>
+            <div *ngIf="registerFc['password'].errors['minlength']">Паролата трябва да съдържа най-малко 6 символа</div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Потвърдете паролата</label>
+          <div class="input">
+            <input
+              type="password"
+              placeholder="Потвърдете паролата"
+              formControlName="confirmPassword"
+            />
+          </div>
+          <div class="error-list" *ngIf="registerFc['confirmPassword'].errors && registerIsSubmitted">
+            <div *ngIf="registerFc['confirmPassword'].errors['required']">Задължително поле</div>
+            <div *ngIf="registerFc['confirmPassword'].errors['notMatch']">Паролите не съвпадат</div>
+          </div>
+        </div>
+        <div class="button">
+          <button class="submit" type="submit">Регистрирай се</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
