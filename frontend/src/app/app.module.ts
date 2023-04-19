@@ -19,6 +19,7 @@ import { CategoryComponent } from './components/pages/category/category.componen
 import { CategoriesComponent } from './components/partials/categories/categories.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { OrdersComponent } from './components/pages/orders/orders.component';
+import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { OrdersComponent } from './components/pages/orders/orders.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgImageFullscreenViewModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       positionClass: 'toast-bottom-right',

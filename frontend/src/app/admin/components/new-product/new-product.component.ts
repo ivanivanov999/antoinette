@@ -13,11 +13,10 @@ import { NewItemService } from '../../services/new-item.service';
 export class NewProductComponent implements OnInit {
   newItemForm!: FormGroup;
   newItem: ItemUpload = new ItemUpload();
-  image = {} as File;
-  imagesPreview:string[] = [''];
+  images = [] as File[];
+  imagesPreview:string[] = [];
   isSubmitted: boolean = false;
-
-  @ViewChild('fileInput', { static: false}) fileInput!: ElementRef;
+  tags: string[] = [];
 
   constructor(private formBuilder: FormBuilder,
     private toastrService: ToastrService,
@@ -30,14 +29,29 @@ export class NewProductComponent implements OnInit {
       name: ['', Validators.required],
       category: ['', Validators.required],
       description: ['', Validators.required],
-      price: [null, Validators.required]
+      price: [null, Validators.required],
+      origin: [['']]
     });
+  }
+
+  addTag() {
+    const inputTag = (<HTMLInputElement>document.getElementById('addTag')).value;
+    this.tags.push(inputTag);
+  }
+
+  removeTag() {
+    this.tags.pop();
+  }
+
+  removeImage() {
+    this.images.pop();
+    this.imagesPreview.pop();
   }
 
   showImage(event: any) {
     if (event.target.files) {
-      this.imagesPreview = [];
-      for (let index = 0; index < event.target.files.length; index++) {
+      for (let index = 0; (index < event.target.files.length) && this.images.length < 4; index++) {
+        this.images.push(event.target.files[index]);
         let reader = new FileReader();
         reader.onload = (e: any) => this.imagesPreview.push(e.target.result);
         reader.readAsDataURL(event.target.files[index]);
@@ -51,19 +65,23 @@ export class NewProductComponent implements OnInit {
 
   uploadItem() {
     this.isSubmitted = true;
-    if (this.newItemForm.invalid) {
+    if (this.newItemForm.invalid || this.images.length === 0) {
       this.toastrService.warning('Моля попълнете всички полета', 'Невалидни данни');
       return;
     }
 
     const form = new FormData();
-    const imageBlob = this.fileInput.nativeElement.files[0];
-    form.append('images', imageBlob);
+    this.images.forEach(image => {
+      form.append('images', image);
+    });
     form.set('name', this.fc['name'].value);
     form.set('category', this.fc['category'].value);
     form.set('description', this.fc['description'].value);
     form.set('price', this.fc['price'].value);
-
+    form.set('origin', this.fc['origin'].value);
+    this.tags.forEach(tag => {
+      form.append('tags', tag);
+    })
     this.newItemService.create(form).subscribe({
       next: () => {
       },

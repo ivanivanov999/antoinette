@@ -92,9 +92,9 @@ li a:hover {
 }
 
 li img{
-  object-fit: cover;
   height: 9rem;
   width: 9rem;
+  object-fit: cover;
 }
 
 li .content {

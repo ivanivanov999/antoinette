@@ -4,7 +4,7 @@ export class ItemUpload{
   tags?: string[];
   category!: string;
   favorite!: boolean;
-  origins?: string[];
+  origin?: string;
   description!: string;
   images!: File[];
 }

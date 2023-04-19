@@ -11,7 +11,7 @@
 
 form {
   height: 100%;
-  flex:1.5;
+  width: 40%;
 }
 
 .form {
@@ -31,7 +31,7 @@ form {
 }
 
 input, .description {
-  border: 0.1rem solid black;
+  border: none;
   background-color: white;
   width: 100%;
   padding: 0.8rem 1rem;
@@ -105,7 +105,7 @@ label {
   flex-direction: column;
   justify-content: center;
   background-color: whitesmoke;
-  flex: 2;
+  width: 60%;
   padding: 5rem 1rem;
 }
 
@@ -113,33 +113,95 @@ input[type='file'] {
   display: none;
 }
 
-.fileInput {
+.file-container {
+  display: flex;
   margin-top: 2rem;
-  border: 0.1rem solid white;
-  width: 100%;
-  padding: 2rem 1rem;
+}
+
+.fileInput {
+  border: 2px solid white;
+  width: 80%;
+  padding: 1.5rem 1rem;
   font-size: 1.2rem;
-  border-radius: 5rem;
-  text-align: center;
-  text-indent: 0;
+  border-radius: 5rem 0 0 5rem;
   cursor: pointer;
+}
+
+.removeImage {
+  width: 20%;
+  border: none;
+  background-color: whitesmoke;
+  color: black;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 0 5rem 5rem 0;
 }
 
 img.main-photo{
   object-fit: contain;
-  max-width: 662.24px;
-  height: auto;
+  width: 100%;
+  aspect-ratio: 1/1;
+  padding: 1rem;
 }
 
 .photos {
   margin-top: 1rem;
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  width: 100%;
 }
 
 .photo {
-  flex: 1;
-  height: auto;
-  max-width: 210.08px;
+  width: 25%;
+  aspect-ratio: 1/1;
   object-fit: contain;
+  padding: 1rem;
+}
+
+#addTag {
+  flex: 7;
+  border-radius: 5rem 0 0 5rem;
+}
+
+.tag-container {
+  display: flex;
+}
+
+.tag-container div{
+  flex: 1.5;
+  border: none;
+  background-color: var(--antoinette-gold);
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.tag-container div.remove {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.add {
+  border-radius: 0 5rem 5rem 0;
+}
+
+.tag {
+  background-color: whitesmoke;
+  padding: 0.5rem 1rem;
+  border-radius: 5rem;
+  color: black;
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }

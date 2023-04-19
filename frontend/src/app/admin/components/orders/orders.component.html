@@ -15,7 +15,7 @@
           </div>
         </div>
         <li *ngFor="let cartItem of order.items">
-          <img [src]="cartItem.item.imageUrl" [alt]="cartItem.item.name" />
+          <img [src]="cartItem.item.imageUrl[0]" [alt]="cartItem.item.name" />
           <div class="content">
             <a routerLink="/item/{{ cartItem.item.id }}">
               <div class="name">

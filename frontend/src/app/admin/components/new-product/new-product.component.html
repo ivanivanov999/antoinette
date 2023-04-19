@@ -7,7 +7,7 @@
     >
       <div class="form">
         <div class="input-container">
-          <label>Име</label>
+          <label>Име*</label>
           <div class="input">
             <input type="text" placeholder="Име" formControlName="name" />
           </div>
@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="input-container">
-          <label>Категория</label>
+          <label>Категория*</label>
           <!--
             <div class="input">
             <input
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="input-container">
-          <label>Описание</label>
+          <label>Описание*</label>
           <div class="input">
             <textarea
               class="description"
@@ -48,14 +48,32 @@
               rows="5"
             ></textarea>
           </div>
-          <div class="error-list" *ngIf="fc['description'].errors && isSubmitted">
+          <div
+            class="error-list"
+            *ngIf="fc['description'].errors && isSubmitted"
+          >
             <div *ngIf="fc['description'].errors['required']">
               Задължително поле
             </div>
           </div>
         </div>
         <div class="input-container">
-          <label>Цена</label>
+          <label>Произход</label>
+          <input type="text" placeholder="Произход" formControlName="origin" />
+        </div>
+        <div class="input-container">
+          <label>Тагове</label>
+          <div class="tag-container">
+            <input type="text" id="addTag" placeholder="Таг" />
+            <div class="remove" (click)="removeTag()">-</div>
+            <div class="add" (click)="addTag()">+</div>
+          </div>
+          <div class="tags">
+            <div class="tag" *ngFor="let tag of tags">{{ tag }}</div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Цена*</label>
           <div class="input">
             <input type="number" placeholder="Цена" formControlName="price" />
           </div>
@@ -64,8 +82,17 @@
           </div>
         </div>
         <div class="input-container">
-          <label class="fileInput" for="fileInput">Снимки</label>
-            <input #fileInput id="fileInput" type="file" multiple (change)="showImage($event)"/>
+          <div class="file-container">
+            <label class="fileInput" for="fileInput">Избери снимки*</label>
+            <input
+              #fileInput
+              id="fileInput"
+              type="file"
+              multiple
+              (change)="showImage($event)"
+            />
+            <div class="removeImage" (click)="removeImage()">-</div>
+          </div>
         </div>
         <div class="button">
           <button type="submit">Качи продукт</button>
@@ -73,10 +100,14 @@
       </div>
     </form>
     <div class="photo-container">
-      <img class="main-photo" [src]="imagesPreview[0]">
+      <img
+        class="main-photo"
+        *ngIf="imagesPreview[0]"
+        [src]="imagesPreview[0]"
+      />
       <div class="photos">
-        <ng-container *ngFor="let image of imagesPreview; let i = index">
-          <img class="photo" *ngIf="i > 0" [src]="image" alt="">
+        <ng-container *ngFor="let image of imagesPreview">
+          <img class="photo" *ngIf="imagesPreview[0]" [src]="image" alt="" />
         </ng-container>
       </div>
     </div>

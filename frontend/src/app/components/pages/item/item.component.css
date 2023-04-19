@@ -1,72 +1,124 @@
 .item-container {
   display: flex;
   justify-content: center;
-  margin: 5rem 0;
+  margin: 6rem 0;
 }
 
 .container {
   width: 80%;
-  height: 40rem;
-  background-color: whitesmoke;
   display: flex;
-  align-items: center;
-  padding: 2rem;
 }
 
 .picture {
   width: 50%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 3rem;
 }
 
-img {
+.pictures {
+  margin-top: 35px;
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.pictures a{
+  width: 25%;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.sub-picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.sub-picture.active {
+  cursor: default;
+  border: 3px solid var(--antoinette-gold);
+}
+
+.main-picture {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  aspect-ratio: 1/1;
 }
 
 .info-container {
   width: 50%;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 2rem 0 2rem 2rem;
+  justify-content: space-between;
   position: relative;
+  padding: 2rem;
+  background-color: whitesmoke;
 }
 
 .info {
+  height: 100%;
+  width: 100%;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .name {
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: 600;
   margin-bottom: 2rem;
+  color: black;
 }
 
 .description {
-  margin: 2rem 0;
+  margin: 4rem 0;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+}
+
+.sub-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  row-gap: 1rem;
+  font-size: 1;
+  border-bottom: 2px solid white;
+  padding-bottom: 1rem;
 }
 
 .origins {
-  margin: 2rem 0;
+  background-color: #616161;
+  color: white;
+  padding: 0.7rem 1rem;
+  border-radius: 5rem;
+}
+
+.tag {
+  background-color: white;
+  padding: 0.7rem 1rem;
+  border-radius: 5rem;
 }
 
 .buy-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  padding: 1rem 2rem 1rem 0;
 }
 
 .buy {
-  width: 80%;
-  position: absolute;
-  bottom: 0;
   display: flex;
-  height: 5rem;
-  line-height: 5rem;
-  overflow: hidden;
   justify-content: space-between;
+  align-items: center;
 }
 
 .price {
@@ -74,6 +126,8 @@ img {
   font-weight: 700;
   height: 100%;
   flex:3;
+  text-align: center;
+  margin-right: 1rem;
 }
 
 .addbutton {
@@ -82,23 +136,24 @@ img {
   font-weight: 600;
   border: none;
   cursor: pointer;
-  font-size: 1.3rem;
-  height: 100%;
+  font-size: 1.5rem;
   text-align: center;
   border-radius: 5rem;
   flex:5.2;
   transition: all 0.5s ease;
-  transform: scale(0.95);
+  transform: scale(1);
+  padding: 0 1rem;
+  height: 4.5rem;
 }
 
 .addbutton:hover {
-  transform: scale(1);
+  transform: scale(1.05);
 }
 
 .addbutton.active{
-  flex: 2.5;
+  flex: 2.3;
   cursor: default;
-  transform: scale(0.9);
+  transform: scale(1);
 }
 
 
@@ -112,7 +167,7 @@ img {
 
 .add.active{
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: hidden;

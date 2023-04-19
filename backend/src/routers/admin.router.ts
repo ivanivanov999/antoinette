@@ -17,7 +17,7 @@ cloudinary.config({
   api_secret: process.env.API_SECRET
 });
 
-const unlinkAsync = promisify(fs.unlink)
+const unlink = promisify(fs.unlink);
 var path = require('path');
 
 /*
@@ -42,9 +42,11 @@ const upload = multer({ storage: storage });
 const router = Router();
 
 
-router.post('/newitem', upload.single('images'), asyncHandler(
+router.post('/newitem', upload.array('images'), asyncHandler(
   async (req: any, res: any) => {
     const requestItem = req.body;
+    let images: any[] = [];
+    let thumbnail: string = '';
     /*
     await bucket.upload(req.file.path);
     bucket.file(req.file.filename).getSignedUrl({
@@ -56,14 +58,23 @@ router.post('/newitem', upload.single('images'), asyncHandler(
       await unlinkAsync(req.file.path);
     })
     */
-    const onUpload = cloudinary.uploader.upload(req.file.path, { transformation: {quality: "auto", fetch_format: "auto"}});
-    onUpload.then(async (data: any) => {
-      const newItem = new ItemModel({ ...requestItem, imageUrl: [data.secure_url] });
-      await newItem.save();
-      await unlinkAsync(req.file.path);
-    }).catch((err: Error) => {
-      console.log(err);
-    });
+    await cloudinary.uploader.upload(req.files[0].path, { transformation: { quality: "auto", fetch_format: "webp", height: 400, width: 400, crop: "fill" } })
+      .then((data: any) => {
+        thumbnail = data.secure_url;
+      });
+    for (let index = 0; index < req.files.length; index++) {
+      await cloudinary.uploader.upload(req.files[index].path, { transformation: { quality: "auto", fetch_format: "webp", height: 800, width: 800, crop: "limit" } })
+        .then(async (data: any) => {
+          images.push(data.secure_url);
+          unlink(req.files[index].path);
+          if (index === req.files.length - 1) {
+            const newItem = new ItemModel({ ...requestItem, imageUrl: images, thumbnail: thumbnail });
+            await newItem.save();
+          }
+        }).catch((err: Error) => {
+          console.log('Проблем със сървъра');
+        });
+    }
   }
 ));
 

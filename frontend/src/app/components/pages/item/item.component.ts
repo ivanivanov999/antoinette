@@ -11,17 +11,26 @@ import { Item } from 'src/app/shared/models/item';
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent {
-
+  imageSrc: string = '';
   item$: Observable<Item> | undefined;
   constructor(private itemService: ItemService,
-                      activatedRoute: ActivatedRoute,
-                      private cartService: CartService,
-                      private router: Router) {
+    activatedRoute: ActivatedRoute,
+    private cartService: CartService,
+    private router: Router) {
     activatedRoute.params.subscribe((params) => {
       if (params['id']) {
         this.item$ = this.itemService.getItemById(params['id']);
       }
     })
+  }
+
+  activateImage(image: string, i: number) {
+    const images = document.getElementsByClassName('sub-picture');
+    for (let index = 0; index < images.length; index++) {
+      images[index].classList.remove('active');
+    }
+    this.imageSrc = image;
+    document.querySelector(`.id${i}`)?.classList.add('active');
   }
 
   addToCart(item: Item) {

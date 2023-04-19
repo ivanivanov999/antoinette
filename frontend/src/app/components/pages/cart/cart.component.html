@@ -4,7 +4,9 @@
     <ng-container *ngIf="cart$ | async as cart">
       <ul *ngIf="cart.items.length">
         <li *ngFor="let cartItem of cart.items">
-          <img [src]="cartItem.item.imageUrl" [alt]="cartItem.item.name" />
+          <div class="image">
+            <img [src]="cartItem.item.imageUrl[0]" [alt]="cartItem.item.name" />
+          </div>
           <div class="content">
             <a routerLink="/item/{{ cartItem.item.id }}">
               <div class="name">

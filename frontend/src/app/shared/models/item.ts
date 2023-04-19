@@ -6,8 +6,9 @@ export class Item{
   category!: string;
   favorite!: boolean;
   imageUrl!: string[];
-  origins?: string[];
+  origin?: string;
   description!: string;
+  thumbnail!: string;
 }
 
 export interface Cover {

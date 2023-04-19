@@ -53,7 +53,9 @@
     <ul *ngIf="cart.items.length">
       <div class="title">Продукти</div>
       <li *ngFor="let cartItem of cart.items">
-        <img [src]="cartItem.item.imageUrl" [alt]="cartItem.item.name" />
+        <div class="image">
+          <img [src]="cartItem.item.imageUrl[0]" [alt]="cartItem.item.name" />
+        </div>
         <div class="content">
           <a routerLink="/item/{{ cartItem.item.id }}">
             <div class="name">

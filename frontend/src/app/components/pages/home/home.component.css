@@ -152,4 +152,5 @@ li a img {
   text-overflow: ellipsis;
   color: var(--antoinette-gold);
   font-weight: 600;
+  font-size: 1.1rem;
 }

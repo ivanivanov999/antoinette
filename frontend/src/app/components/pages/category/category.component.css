@@ -10,24 +10,26 @@
 }
 
 ul {
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   list-style-type: none;
+  gap: 1rem;
+  row-gap: 1rem;
   padding: 1.5rem;
   background-color: whitesmoke;
   margin: 0;
+  justify-items: center;
 }
 
 li a {
-  height: 25rem;
-  width: 17rem;
+  max-width: 300px;
   margin: 0.5rem;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   color: black;
-  background-color: white;
   padding: 0.8rem;
+  background-color: white;
 }
 
 li a:hover {
@@ -36,8 +38,8 @@ li a:hover {
 
 li a img {
   object-fit: cover;
-  height: 245px;
-  width: 245px;
+  width: 100%;
+  aspect-ratio: 1/1;
 }
 
 .content {
@@ -72,4 +74,5 @@ li a img {
   text-overflow: ellipsis;
   color: var(--antoinette-gold);
   font-weight: 600;
+  font-size: 1.1rem;
 }

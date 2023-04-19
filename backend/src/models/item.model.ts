@@ -8,8 +8,9 @@ export interface Item {
     category: string;
     favorite: boolean;
     imageUrl: string[];
-    origins: string[];
+    origin: string;
     description: string;
+    thumbnail: string;
 }
 
 export const ItemSchema = new Schema<Item>(
@@ -20,8 +21,9 @@ export const ItemSchema = new Schema<Item>(
         category: {type: String, required: true},
         favorite: {type: Boolean, default: false},
         imageUrl: {type: [String], required: true},
-        origins: {type: [String]},
+        origin: {type: String},
         description: {type: String, required: true},
+        thumbnail: {type: String, required: true}
     }, {
         toJSON: {
             virtuals: true

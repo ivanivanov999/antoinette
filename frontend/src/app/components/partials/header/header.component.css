@@ -96,10 +96,12 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .carticon {
   margin-left: -0.2rem;
+  cursor: pointer;
 }
 
 .quantity {
@@ -145,7 +147,7 @@ nav {
   left: 0;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(1rem);
-  background: rgba(0, 0, 0, 0.701);
+  background: rgba(0, 0, 0, 0.7);
   font-weight: 600;
   transition: height 0.1s ease;
   overflow: hidden;
