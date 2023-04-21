@@ -42,6 +42,7 @@
           <label>Описание*</label>
           <div class="input">
             <textarea
+              (keyup)="handleDescription($event)"
               class="description"
               placeholder="Описание"
               formControlName="description"
@@ -89,6 +90,7 @@
               id="fileInput"
               type="file"
               multiple
+              accept="image/*"
               (change)="showImage($event)"
             />
             <div class="removeImage" (click)="removeImage()">-</div>

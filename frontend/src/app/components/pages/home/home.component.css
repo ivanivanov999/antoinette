@@ -13,6 +13,12 @@
   height: 40rem;
 }
 
+@media only screen and (max-width: 1400px) {
+  .highlightphoto {
+    width: 90%;
+  }
+}
+
 .highlightphoto img {
   width: 100%;
   height: 100%;
@@ -30,127 +36,16 @@
   font-weight: 600;
 }
 
+@media only screen and (max-width: 1400px) {
+  .quote {
+    width: 90%;
+    padding: 2rem;
+  }
+}
+
 .quote .quoteauthor {
   padding-top: 1.5rem;
   font-size: 1.2rem;
   font-family: "Comfortaa", "sans-serif";
   color: var(--antoinette-gold);
-}
-
-.featured-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 5rem;
-}
-
-ul {
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  overflow-x:scroll;
-  list-style-type: none;
-  padding:0;
-  background-color: whitesmoke;
-  margin: 0;
-  width: 80%;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  scroll-behavior: smooth;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-}
-
-ul::-webkit-scrollbar {
-  display: none;
-}
-
-.side {
-  position: sticky;
-  z-index: 100;
-  width: 10%;
-  height: 100%;
-  border: none;
-  padding: 0 2.5rem;
-  background: rgba(245, 245, 245, 0.9);
-  font-size: 5rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: center;
-  font-weight: 600;
-}
-
-.side:hover span{
-  font-size: 5.5rem;
-  text-align: center;
-}
-
-.side:active span{
-  font-size: 4.5rem;
-}
-
-.scrollleft {
-  left: 0px;
-}
-
-.scrollright {
-  right: 0px;
-}
-
-li a {
-  height: 25rem;
-  width: 17rem;
-  margin: 2rem 0.5rem;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  color: black;
-  background-color: white;
-  padding: 0.8rem;
-  scroll-snap-align: center;
-}
-
-li a:hover {
-  opacity: 0.6;
-}
-
-li a img {
-  object-fit: cover;
-  height: 245px;
-  width: 245px;
-}
-
-.content {
-  margin-top: 0.3rem;
-  padding: 0.5rem 0;
-  position: relative;
-  height: 7.5rem;
-}
-
-.price {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  font-weight: 600;
-}
-
-.description {
-  margin-top: 0.5rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: black;
-}
-
-.name {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: var(--antoinette-gold);
-  font-weight: 600;
-  font-size: 1.1rem;
 }

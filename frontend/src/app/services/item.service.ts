@@ -2,14 +2,19 @@ import { Injectable } from '@angular/core';
 import { Cover, Item } from '../shared/models/item';
 import { cover } from 'src/data';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { DELIVERIES_URL, ITEMS_BY_CATEGORY_URL, ITEMS_BY_SEARCH_URL, ITEMS_URL, ITEM_BY_ID_URL } from '../shared/constants/urls';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { DELIVERIES_URL, ITEMS_BY_CATEGORY_URL, ITEMS_BY_SEARCH_URL, ITEMS_BY_TAG_URL, ITEMS_URL, ITEM_BY_ID_URL } from '../shared/constants/urls';
 import { Delivery } from '../shared/models/delivery.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
+
+  /*
+  private itemsSubject = new BehaviorSubject<Item[]>([]);
+  items: Observable<Item[]> = this.itemsSubject.asObservable();
+  */
 
   constructor(private http: HttpClient) { }
 
@@ -30,7 +35,16 @@ export class ItemService {
   }
 
   getAllItemsByCategory(category: string): Observable<Item[]> {
+    /*
+    this.http.get<Item[]>(ITEMS_BY_CATEGORY_URL + category).subscribe((items: Item[]) => {
+      this.itemsSubject.next(items);
+    });
+    */
     return this.http.get<Item[]>(ITEMS_BY_CATEGORY_URL + category);
+  }
+
+  getAllItemsByTag(tag: string): Observable<Item[]> {
+    return this.http.get<Item[]>(ITEMS_BY_TAG_URL + tag);
   }
 
   getDeliveries(): Observable<Delivery[]> {

@@ -9,6 +9,8 @@ import { AuthGuard } from './auth/guards/auth.guard';
 import { CategoryComponent } from './components/pages/category/category.component';
 import { AdminGuard } from './auth/guards/admin.guard';
 import { OrdersComponent } from './components/pages/orders/orders.component';
+import { DecorComponent } from './components/pages/decor/decor.component';
+import { AboutComponent } from './components/pages/about/about.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'category/:category', component: CategoryComponent},
   { path: 'category', redirectTo: 'category/Сервизи%20за%20хранене'},
   { path: 'orders', component: OrdersComponent},
+  { path: 'decor', component: DecorComponent},
+  { path: 'about', component: AboutComponent},
   {
     path: 'admin',
     canLoad: [AdminGuard],

@@ -1,0 +1,13 @@
+.decor-container {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  min-height: 100vh;
+}
+
+.container {
+  margin: 5rem 0;
+  width: 80%;
+  height: 100%;
+  color: white;
+}

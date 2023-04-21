@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, combineLatest, map, merge, take } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { ItemService } from 'src/app/services/item.service';
 import { Item } from 'src/app/shared/models/item';
@@ -10,18 +10,45 @@ import { Item } from 'src/app/shared/models/item';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent {
+export class ItemComponent implements OnDestroy {
   imageSrc: string = '';
   item$: Observable<Item> | undefined;
-  constructor(private itemService: ItemService,
-    activatedRoute: ActivatedRoute,
-    private cartService: CartService,
-    private router: Router) {
-    activatedRoute.params.subscribe((params) => {
+
+  tag: string = '';
+  category: string = '';
+  tags$: Observable<Item[]> | undefined;
+  categories$: Observable<Item[]> | undefined;
+
+  similarItems$: Observable<Item[]> | undefined;
+
+  sub1: Subscription | undefined;
+  sub2: Subscription | undefined;
+
+  constructor(itemService: ItemService,
+              activatedRoute: ActivatedRoute,
+              private cartService: CartService) {
+
+    this.sub1 = activatedRoute.params.subscribe((params) => {
       if (params['id']) {
-        this.item$ = this.itemService.getItemById(params['id']);
+        this.item$ = itemService.getItemById(params['id']);
+        this.sub2 = this.item$.subscribe(item => {
+          this.tag = item.tags ? item.tags[0] : '';
+          this.category = item.category;
+          this.categories$ = itemService.getAllItemsByCategory(this.category).pipe(take(4));
+          if (this.tag !== '') {
+            this.tags$ = itemService.getAllItemsByTag(this.tag).pipe(take(4));
+            this.similarItems$ = combineLatest(this.tags$, this.categories$).pipe(map(value => [...new Map([...value[0], ...value[1]].map((m) => [m.id, m])).values()].filter(newItem => newItem.id != item.id)));
+          } else {
+            this.similarItems$ = this.categories$;
+          }
+        });
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.sub1?.unsubscribe;
+    this.sub2?.unsubscribe;
   }
 
   activateImage(image: string, i: number) {

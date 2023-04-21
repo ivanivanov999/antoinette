@@ -15,7 +15,7 @@ router.get('/', asyncHandler(
 
 router.get('/deliveries', asyncHandler(
     async (req, res) => {
-        const deliveries = await DeliveryModel.find();
+        const deliveries = await DeliveryModel.find().sort({name: 'asc'});
         res.send(deliveries);
     }
 ))

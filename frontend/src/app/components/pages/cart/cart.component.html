@@ -5,7 +5,7 @@
       <ul *ngIf="cart.items.length">
         <li *ngFor="let cartItem of cart.items">
           <div class="image">
-            <img [src]="cartItem.item.imageUrl[0]" [alt]="cartItem.item.name" />
+            <img [src]="cartItem.item.thumbnail || cartItem.item.imageUrl[0]" [alt]="cartItem.item.name" />
           </div>
           <div class="content">
             <a routerLink="/item/{{ cartItem.item.id }}">

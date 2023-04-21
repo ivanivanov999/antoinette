@@ -17,6 +17,7 @@ export class NewProductComponent implements OnInit {
   imagesPreview:string[] = [];
   isSubmitted: boolean = false;
   tags: string[] = [];
+  description: string = '';
 
   constructor(private formBuilder: FormBuilder,
     private toastrService: ToastrService,
@@ -76,7 +77,7 @@ export class NewProductComponent implements OnInit {
     });
     form.set('name', this.fc['name'].value);
     form.set('category', this.fc['category'].value);
-    form.set('description', this.fc['description'].value);
+    form.set('description', this.description);
     form.set('price', this.fc['price'].value);
     form.set('origin', this.fc['origin'].value);
     this.tags.forEach(tag => {
@@ -84,10 +85,17 @@ export class NewProductComponent implements OnInit {
     })
     this.newItemService.create(form).subscribe({
       next: () => {
+        window.location.reload();
       },
       error: (errorResponse) => {
         this.toastrService.error(errorResponse.error, 'Няма продукти');
       }
     });
+  }
+
+  handleDescription(event: any) {
+    let text = event.target.value;
+    this.description = text.replace(/\n\r?/g, '<br />');
+    console.log(this.description);
   }
 }

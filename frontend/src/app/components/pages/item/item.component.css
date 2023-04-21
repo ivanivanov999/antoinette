@@ -6,7 +6,14 @@
 
 .container {
   width: 80%;
+  max-width: 1300px;
   display: flex;
+}
+
+@media only screen and (max-width: 1400px) {
+  .container {
+    width: 90%;
+  }
 }
 
 .picture {
@@ -27,7 +34,7 @@
   align-items: center;
 }
 
-.pictures a{
+.pictures a {
   width: 25%;
   aspect-ratio: 1/1;
   display: flex;
@@ -103,12 +110,18 @@
   color: white;
   padding: 0.7rem 1rem;
   border-radius: 5rem;
+  -webkit-box-shadow: inset 1px -1px 8px -6px rgba(0, 0, 0, 1);
+  -moz-box-shadow: inset 1px -1px 8px -6px rgba(0, 0, 0, 1);
+  box-shadow: inset 1px -1px 8px -6px rgba(0, 0, 0, 1);
 }
 
 .tag {
   background-color: white;
   padding: 0.7rem 1rem;
   border-radius: 5rem;
+  -webkit-box-shadow: inset 1px -1px 8px -6px rgba(0, 0, 0, 1);
+  -moz-box-shadow: inset 1px -1px 8px -6px rgba(0, 0, 0, 1);
+  box-shadow: inset 1px -1px 8px -6px rgba(0, 0, 0, 1);
 }
 
 .buy-container {
@@ -125,7 +138,7 @@
   font-size: 1.3rem;
   font-weight: 700;
   height: 100%;
-  flex:3;
+  flex: 3;
   text-align: center;
   margin-right: 1rem;
 }
@@ -139,33 +152,33 @@
   font-size: 1.5rem;
   text-align: center;
   border-radius: 5rem;
-  flex:5.2;
+  flex: 5.2;
   transition: all 0.5s ease;
   transform: scale(1);
   padding: 0 1rem;
   height: 4.5rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .addbutton:hover {
   transform: scale(1.05);
 }
 
-.addbutton.active{
+.addbutton.active {
   flex: 2.3;
   cursor: default;
   transform: scale(1);
 }
 
-
-.addbutton span{
+.addbutton span {
   cursor: pointer;
 }
 
-.addbutton.active span{
+.addbutton.active span {
   cursor: default;
 }
 
-.add.active{
+.add.active {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -173,12 +186,12 @@
   text-overflow: hidden;
 }
 
-.add{
+.add {
   display: none;
 }
 
 .added.active {
-  display:block;
+  display: block;
 }
 
 .added {

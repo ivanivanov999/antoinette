@@ -20,6 +20,11 @@ import { CategoriesComponent } from './components/partials/categories/categories
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { OrdersComponent } from './components/pages/orders/orders.component';
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
+import { LoadingComponent } from './components/partials/loading/loading.component';
+import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
+import { DecorComponent } from './components/pages/decor/decor.component';
+import { AboutComponent } from './components/pages/about/about.component';
+import { CarouselComponent } from './components/partials/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,11 @@ import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
     TitleComponent,
     CategoryComponent,
     CategoriesComponent,
-    OrdersComponent
+    OrdersComponent,
+    LoadingComponent,
+    DecorComponent,
+    AboutComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +60,8 @@ import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
     })
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
   exports: [ CategoriesComponent ]

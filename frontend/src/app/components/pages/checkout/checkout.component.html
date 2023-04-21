@@ -54,7 +54,7 @@
       <div class="title">Продукти</div>
       <li *ngFor="let cartItem of cart.items">
         <div class="image">
-          <img [src]="cartItem.item.imageUrl[0]" [alt]="cartItem.item.name" />
+          <img [src]="cartItem.item.thumbnail || cartItem.item.imageUrl[0]" [alt]="cartItem.item.name" />
         </div>
         <div class="content">
           <a routerLink="/item/{{ cartItem.item.id }}">
@@ -89,11 +89,14 @@
             <div class="subtotal">
               {{cart.totalPrice | number : "1.2-2" }} лв.
             </div>
-            <div class="deliveryPrice">
+            <div class="deliveryPrice" *ngIf="cart.totalPrice < deliveries[1].price">
               {{deliveries[0].price | number : "1.2-2" }} лв.
             </div>
+            <div class="deliveryPrice" *ngIf="cart.totalPrice >= deliveries[1].price">
+              {{ 0 | number : "1.2-2" }} лв.
+            </div>
             <div class="total">
-              {{cart.totalPrice + deliveries[0].price | number : "1.2-2" }} лв.
+              {{cart.totalPrice + (cart.totalPrice < deliveries[1].price ? deliveries[0].price : 0) | number : "1.2-2" }} лв.
             </div>
           </div>
         </div>

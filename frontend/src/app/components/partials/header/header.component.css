@@ -71,6 +71,12 @@ a:hover {
   height: 3rem;
 }
 
+@media only screen and (max-width: 1400px) {
+  .container {
+    width: 90%;
+  }
+}
+
 nav {
   display: flex;
   align-items: center;
@@ -156,6 +162,12 @@ nav {
 .menu-container {
   width: 80%;
   display: flex;
+}
+
+@media only screen and (max-width: 1400px) {
+  .menu-container {
+    width: 90%;
+  }
 }
 
 .navmenu {

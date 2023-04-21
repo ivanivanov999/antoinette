@@ -1,0 +1,25 @@
+.about-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  background-color: whitesmoke;
+}
+
+.about {
+  flex:3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
+
+iframe {
+  flex:2;
+}

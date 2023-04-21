@@ -24,18 +24,4 @@ export class HomeComponent {
       }
     })
   }
-
-  scrollLeft() {
-    const leftButton = document.querySelector(".scrollleft");
-    const container: any = document.querySelector('.scrollContainer');
-    container!.scrollLeft -= 300;
-  }
-
-  scrollRight() {
-    const rightButton = document.querySelector(".scrollright");
-    const container = document.querySelector('.scrollContainer');
-    if (container!.scrollLeft < container!.scrollWidth) {
-      container!.scrollLeft += 300;
-    }
-  }
 }

@@ -1,73 +1,99 @@
-.category-container {
-  margin-bottom: 5rem;
+.featured-container {
   display: flex;
   justify-content: center;
-}
-
-.container {
-  width: 80%;
-  background-color: whitesmoke;
+  margin-bottom: 5rem;
 }
 
 ul {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
   list-style-type: none;
-  gap: 1rem;
-  row-gap: 1rem;
-  padding: 1.5rem;
+  padding: 0;
   background-color: whitesmoke;
   margin: 0;
-  justify-items: center;
+  width: 80%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
 }
 
 @media only screen and (max-width: 1400px) {
-  .container {
+  ul {
     width: 90%;
   }
 }
 
-@media only screen and (max-width: 1250px) {
-  ul {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+ul::-webkit-scrollbar {
+  display: none;
 }
 
-@media only screen and (max-width: 900px) {
-  ul {
-    grid-template-columns: 1fr 1fr;
-  }
+.side {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  width: 10%;
+  height: 100%;
+  border: none;
+  padding: 0 2.5rem;
+  background: rgba(245, 245, 245, 0.9);
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+}
+
+.buttonarrow {
+  transition: all 0.3s ease;
+  font-size: 5rem;
+}
+
+.side:hover .buttonarrow {
+  transform: scale(1.2);
+}
+
+.side:active .buttonarrow {
+  transform: scale(0.9);
+}
+
+.scrollleft {
+  left: 0px;
+}
+
+.scrollright {
+  right: 0px;
 }
 
 li a {
-  max-width: 300px;
-  margin: 0.5rem;
+  height: 25rem;
+  width: 17rem;
+  margin: 2rem 0.5rem;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   color: black;
-  padding: 0.8rem;
   background-color: white;
+  padding: 0.8rem;
+  scroll-snap-align: center;
   -webkit-box-shadow: -2px 2px 15px -6px rgba(99, 99, 99, 1);
   -moz-box-shadow: -2px 2px 15px -6px rgba(99, 99, 99, 1);
   box-shadow: -2px 2px 15px -6px rgba(99, 99, 99, 1);
-  transition: all 0.3s ease;
-  transition-delay: 0s;
 }
 
 li a:hover {
-  transform: scale(1.05);
-  transition-delay: 1s;
-}
-
-li a:active {
-  transform: scale(0.97);
+  opacity: 0.6;
 }
 
 li a img {
   object-fit: cover;
-  width: 100%;
-  aspect-ratio: 1/1;
+  height: 245px;
+  width: 245px;
 }
 
 .content {

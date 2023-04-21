@@ -24,7 +24,7 @@
       <div class="info">
         <div class="main-info">
           <div class="name">{{ item.name }}</div>
-          <div class="description">{{ item.description }}</div>
+          <div class="description" [innerHTML]="item.description"></div>
         </div>
         <div class="sub-info">
           <div class="origins" *ngIf="item.origin">{{ item.origin }}</div>
@@ -43,3 +43,9 @@
     </div>
   </div>
 </div>
+<ng-container *ngIf="similarItems$ | async as similarItems">
+  <div class="similar" *ngIf="similarItems.length">
+    <app-title [title]="'Открий подобни продукти'"></app-title>
+    <app-carousel [items$]="similarItems$"></app-carousel>
+  </div>
+</ng-container>

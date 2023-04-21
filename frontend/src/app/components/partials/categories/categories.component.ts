@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/shared/models/category';
 import { sample_items } from 'src/data';
@@ -6,7 +6,8 @@ import { sample_items } from 'src/data';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css']
+  styleUrls: ['./categories.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesComponent {
 
