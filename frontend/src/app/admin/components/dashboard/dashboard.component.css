@@ -1,12 +1,16 @@
 .category-container {
-  padding-top: 1.4rem;
-  margin-bottom: 5rem;
-  background-color: black;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 5rem 0 5rem 0;
 }
 
 .container {
+  width: 80%;
   display: flex;
   justify-content: center;
+  background-color: black;
+  border-radius: 10rem;
 }
 
 ul {
@@ -26,31 +30,13 @@ li a {
   align-items: center;
   overflow: hidden;
   color: black;
-  height: 8rem;
-  width: 8rem;
-}
-
-li a:hover .image{
-  transform: scale(1.05);
-}
-
-li a:active .image {
-  transform: scale(0.95);
 }
 
 a.active .name{
   color: var(--antoinette-gold);
 }
 
-a.category.active .image{
-  border: 3px solid var(--antoinette-gold);
-}
-
 li a .image{
-  height: 7rem;
-  width: 7rem;
-  border-radius: 100rem;
-  border: 3px solid white;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;

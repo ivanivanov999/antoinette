@@ -1,5 +1,5 @@
 <div class="featured-container">
-  <ul *ngIf="items$ | async as items" class="scrollContainer">
+  <ul *ngIf="items" class="scrollContainer">
     <button class="scrollleft side" (click)="scrollLeft()">
       <div class="buttonarrow">
         <span>&#60;</span>
@@ -7,7 +7,7 @@
     </button>
     <li *ngFor="let item of items">
       <a routerLink="/item/{{ item.id }}">
-        <img [src]="item.imageUrl[0]" [alt]="item.name" />
+        <img [src]="item.imageUrl[0]" [alt]="item.name" loading="lazy"/>
         <div class="content">
           <div class="name">
             {{ item.name }}

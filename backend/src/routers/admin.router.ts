@@ -1,6 +1,5 @@
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
-// Import the functions you need from the SDKs you need
 import admin from "firebase-admin";
 import { getStorage } from 'firebase-admin/storage'
 import multer from 'multer';
@@ -8,19 +7,25 @@ import fs from 'fs';
 import { promisify } from 'util';
 import { ItemModel } from "../models/item.model";
 import sharp from 'sharp';
+import { OrderModel } from "../models/order.model";
+import { OrderStatus } from "../constants/order_status";
+import adminMid from "../middlewares/admin.mid";
 
+/*
+//Cloudinary
 const cloudinary = require('cloudinary').v2;
 
-// Cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
   api_secret: process.env.API_SECRET
 });
+*/
 
 const unlink = promisify(fs.unlink);
 var path = require('path');
 
+// Firebase
 var serviceAccount = require("../antoinette-home-decor-firebase-adminsdk-vrgly-774d031ccd.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -28,6 +33,7 @@ admin.initializeApp({
 });
 const bucket = getStorage().bucket();
 
+// Multer
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/')
@@ -38,7 +44,44 @@ var storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+// Define router and middleware
 const router = Router();
+router.use(adminMid);
+
+router.get('/orders', asyncHandler(
+  async (req: any, res: any) => {
+    const orders = await OrderModel.find().or([
+      { status: OrderStatus.WAITING },
+      { status: OrderStatus.CONFIRMED },
+      { status: OrderStatus.SHIPPED }
+    ]).sort({ updatedAt: 'asc' });
+    res.send(orders);
+  }
+));
+
+router.get('/orders/status/:status', asyncHandler(
+  async (req: any, res: any) => {
+    const status = req.params.status;
+    const orders = await OrderModel.find({ status: status}).sort({ updatedAt: 'asc' });
+    res.send(orders);
+  }
+));
+
+router.put('/updateorder/:orderId', asyncHandler(
+  async (req: any, res: any) => {
+    const newStatus: string = req.body.status;
+    const orderId: string = req.params.orderId;
+    OrderModel.findByIdAndUpdate(orderId, { status: newStatus }).then(data => {
+      if (!data) {
+        res.status(404).send(`Не е намерена поръчка номер ${orderId}`);
+      } else res.send({ message: "Статусът е актуализиран успешно" });
+    }).catch(err => {
+      res.status(500).send({
+        message: `Проблем с актуализирането на поръчка номер ${orderId}`
+      })
+    })
+  }
+))
 
 
 router.post('/newitem', upload.array('images'), asyncHandler(
@@ -59,7 +102,7 @@ router.post('/newitem', upload.array('images'), asyncHandler(
           thumbnail = signedUrls[0];
         });
       }
-      await sharp(req.files[index].path).resize(800, 800, {fit: 'inside'}).webp().toFile(`./outputs/${req.files[index].filename}.webp`);
+      await sharp(req.files[index].path).resize(800, 800, { fit: 'inside' }).webp().toFile(`./outputs/${req.files[index].filename}.webp`);
       unlink(req.files[index].path);
       await bucket.upload(`./outputs/${req.files[index].filename}.webp`);
       unlink(`./outputs/${req.files[index].filename}.webp`);

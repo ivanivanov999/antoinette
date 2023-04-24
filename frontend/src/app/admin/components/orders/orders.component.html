@@ -1,21 +1,45 @@
-<div class="cart-container">
+<div class="order-container">
   <div class="container">
+    <div class="filter-container">Статус:
+      <select #s class="currentFilter" (change)="activateFilter(s.value)">
+        <ng-container *ngFor="let filter of filters; let i = index">
+          <option class="filter" [value]="filter">{{filter}}</option>
+        </ng-container>
+      </select>
+    </div>
     <ng-container *ngIf="orders$ | async as orders">
-      <ul *ngFor="let order of orders" [ngClass]="{'red': order.status === 'Изчаква потвърждение'}">
+      <ul *ngFor="let order of orders">
+        <div class="edit" (click)="editOrder(order)">+</div>
         <div class="details">
           <div class="userdetails">
-            <div class="detail">Име: {{order.name}}</div>
-            <div class="detail">Телефон: {{order.phone}}</div>
-            <div class="detail">Адрес: {{order.address}}</div>
+            <div class="detail">Име: {{ order.name }}</div>
+            <div class="detail">Телефон: {{ order.phone }}</div>
+            <div class="detail">Адрес: {{ order.address }}</div>
           </div>
           <div class="orderdetails">
-            <div class="detail">Статус: {{order.status}}</div>
-            <div class="detail">Дата: {{order.createdAt | date : 'medium'}}</div>
-            <div class="detail">Крайна сума: {{order.totalPrice | number : "1.2-2" }}</div>
+            <div
+              class="detail"
+              [ngClass]="{
+                red: order.status === 'Изчаква потвърждение',
+                pink: order.status === 'Потвърдена'
+              }"
+            >
+              Статус: {{ order.status }}
+            </div>
+            <div class="detail">
+              Дата: {{ order.createdAt | date : "medium" }}
+            </div>
+            <div class="detail">
+              Крайна сума: {{ order.totalPrice | number : "1.2-2" }}
+            </div>
           </div>
         </div>
         <li *ngFor="let cartItem of order.items">
-          <img [src]="cartItem.item.imageUrl[0]" [alt]="cartItem.item.name" />
+          <img
+            [src]="cartItem.item.imageUrl[0]"
+            [alt]="cartItem.item.name"
+            loading="lazy"
+          />
           <div class="content">
             <a routerLink="/item/{{ cartItem.item.id }}">
               <div class="name">
@@ -37,5 +61,21 @@
         </li>
       </ul>
     </ng-container>
+  </div>
+</div>
+<div class="popup" *ngIf="edit">
+  <div class="popup-form">
+    <form [formGroup]="updateOrderForm" (ngSubmit)="submitOrder()">
+      <button class="close" (click)="edit = !edit">Затвори</button>
+      <select formControlName="status" class="select">
+        <option value="Изчаква потвърждение">Изчаква потвърждение</option>
+        <option value="Потвърдена">Потвърдена</option>
+        <option value="Изпратена">Изпратена</option>
+        <option value="Доставена">Доставена</option>
+        <option value="Отказана">Отказана</option>
+        <option value="Върната">Върната</option>
+      </select>
+      <button type="submit" class="submit">Потвърди</button>
+    </form>
   </div>
 </div>

@@ -1,51 +1,60 @@
-<div class="item-container">
-  <div class="container" *ngIf="item$ | async as item">
-    <div class="picture">
-      <img
-        class="main-picture"
-        [src]="imageSrc ? imageSrc : item.imageUrl[0]"
-        [alt]="item.name"
-      />
-      <div class="pictures">
-        <a
-          *ngFor="let image of item.imageUrl; let i = index"
-          (click)="activateImage(image, i)"
-        >
-          <img
-            [src]="image"
-            [alt]="item.name"
-            class="sub-picture id{{ i }}"
-            [ngClass]="{ active: i == 0 }"
-          />
-        </a>
-      </div>
-    </div>
-    <div class="info-container">
-      <div class="info">
-        <div class="main-info">
-          <div class="name">{{ item.name }}</div>
-          <div class="description" [innerHTML]="item.description"></div>
-        </div>
-        <div class="sub-info">
-          <div class="origins" *ngIf="item.origin">{{ item.origin }}</div>
-          <div class="tag" *ngFor="let tag of item.tags">{{ tag }}</div>
+<ng-container *ngIf="items$ | async as items">
+  <div class="item-container">
+    <div class="container" *ngIf="items.item as item">
+      <div class="picture">
+        <img
+          class="main-picture"
+          [src]="imageSrc ? imageSrc : item.imageUrl[0]"
+          [alt]="item.name"
+        />
+        <div class="pictures">
+          <a
+            *ngFor="let image of item.imageUrl; let i = index"
+            (click)="activateImage(image, i)"
+          >
+            <img
+              [src]="image"
+              [alt]="item.name"
+              class="sub-picture id{{ i }}"
+              [ngClass]="{ active: i == 0 }"
+            />
+          </a>
         </div>
       </div>
-      <div class="buy-container">
-        <div class="buy">
-          <div class="price">BGN {{ item.price | number : "1.2-2" }}</div>
-          <button class="addbutton" (click)="addToCart(item)">
-            <span class="add active">Добави в количката</span>
-            <span class="added">&#10003; Добавено</span>
-          </button>
+      <div class="info-container">
+        <div class="info">
+          <div class="main-info">
+            <div class="name">{{ item.name }}</div>
+            <div class="description" [innerHTML]="item.description"></div>
+          </div>
+          <div class="sub-info">
+            <div class="origins" *ngIf="item.origin">{{ item.origin }}</div>
+            <div class="tag" *ngFor="let tag of item.tags">{{ tag }}</div>
+          </div>
+        </div>
+        <div class="buy-container">
+          <div class="buy">
+            <div class="price">BGN {{ item.price | number : "1.2-2" }}</div>
+            <button class="addbutton" (click)="addToCart(item)">
+              <span class="add active">Добави в количката</span>
+              <span class="added">&#10003; Добавено</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<ng-container *ngIf="similarItems$ | async as similarItems">
-  <div class="similar" *ngIf="similarItems.length">
-    <app-title [title]="'Открий подобни продукти'"></app-title>
-    <app-carousel [items$]="similarItems$"></app-carousel>
+  <ng-container *ngIf="items.similarItems as similarItems">
+    <div class="similar" *ngIf="similarItems.length">
+      <app-title [title]="'Открий подобни продукти'"></app-title>
+      <app-carousel [items]="similarItems"></app-carousel>
+    </div>
+  </ng-container>
+</ng-container>
+<ng-container *ngIf="error">
+  <div class="item-container">
+    <div class="container">
+      <div class="message">Error 404: Не е намерен такъв продукт 😔</div>
+    </div>
   </div>
 </ng-container>

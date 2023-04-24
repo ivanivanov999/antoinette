@@ -8,7 +8,7 @@ import { ItemService } from 'src/app/services/item.service';
 import { OrderService } from 'src/app/services/order.service';
 import { UserService } from 'src/app/services/user.service';
 import { Cart } from 'src/app/shared/models/cart';
-import { Delivery } from 'src/app/shared/models/delivery.model';
+import { Delivery } from 'src/app/shared/models/delivery';
 import { Order } from 'src/app/shared/models/order';
 
 @Component({

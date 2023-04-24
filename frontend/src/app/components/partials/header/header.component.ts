@@ -19,6 +19,7 @@ export class HeaderComponent {
     this.user$ = userService.getUserObservable();
     //this.initialize();
   }
+  adminMode: boolean = false;
 
   logout() {
     this.userService.logout();

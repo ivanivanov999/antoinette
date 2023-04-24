@@ -25,6 +25,9 @@ import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { DecorComponent } from './components/pages/decor/decor.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { CarouselComponent } from './components/partials/carousel/carousel.component';
+import { SearchComponent } from './components/partials/search/search.component';
+import { AllproductsComponent } from './components/pages/allproducts/allproducts.component';
+import { ProductsComponent } from './components/partials/products/products.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { CarouselComponent } from './components/partials/carousel/carousel.compo
     LoadingComponent,
     DecorComponent,
     AboutComponent,
-    CarouselComponent
+    CarouselComponent,
+    SearchComponent,
+    AllproductsComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

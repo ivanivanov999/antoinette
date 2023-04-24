@@ -11,12 +11,12 @@ import { AdminGuard } from './auth/guards/admin.guard';
 import { OrdersComponent } from './components/pages/orders/orders.component';
 import { DecorComponent } from './components/pages/decor/decor.component';
 import { AboutComponent } from './components/pages/about/about.component';
+import { AllproductsComponent } from './components/pages/allproducts/allproducts.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'item/:id', component: ItemComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'search/:searchTerm', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
   { path: 'category/:category', component: CategoryComponent},
@@ -24,6 +24,8 @@ const routes: Routes = [
   { path: 'orders', component: OrdersComponent},
   { path: 'decor', component: DecorComponent},
   { path: 'about', component: AboutComponent},
+  { path: 'products', component: AllproductsComponent},
+  { path: 'search/:searchTerm', component: AllproductsComponent},
   {
     path: 'admin',
     canLoad: [AdminGuard],

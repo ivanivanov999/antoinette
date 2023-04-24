@@ -5,11 +5,9 @@ import { NewProductComponent } from './components/new-product/new-product.compon
 import { OrdersComponent } from './components/orders/orders.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent, children: [
-    { path: 'new-product', component: NewProductComponent},
-    { path: 'orders', component: OrdersComponent}
-  ]},
-  { path: '', redirectTo: 'dashboard/orders', pathMatch: 'full'}
+  { path: 'new-product', component: NewProductComponent},
+  { path: 'orders', component: OrdersComponent},
+  { path: '', redirectTo: 'orders', pathMatch: 'full'}
 ];
 
 @NgModule({

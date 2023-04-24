@@ -1,6 +1,6 @@
 <app-categories></app-categories>
 <ng-container *ngIf="activated | async as activated">
-  <app-title [title]="activated['category']"></app-title>
+  <app-title [title]="'Резултати за: ' + '&quot;' + activated['searchTerm'] + '&quot;'"></app-title>
 </ng-container>
 <ng-container *ngIf="items$ | async as items">
   <app-products [items]="items"></app-products>

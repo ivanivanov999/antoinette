@@ -6,7 +6,14 @@
 
 .container {
   width: 80%;
-  background-color: whitesmoke;
+}
+
+.noproducts {
+  display: flex;
+  margin: 5rem 0;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
 }
 
 ul {
@@ -40,72 +47,89 @@ ul {
 }
 
 li {
-  transition: all 0.3s ease;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  -webkit-box-shadow: -2px 2px 15px -6px rgba(99, 99, 99, 1);
+  -moz-box-shadow: -2px 2px 15px -6px rgba(99, 99, 99, 1);
+  box-shadow: -2px 2px 15px -6px rgba(99, 99, 99, 1);
+  margin: 8px;
 }
 
 li a {
   max-width: 300px;
-  margin: 8px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   color: black;
   padding: 12px;
   background-color: white;
-  -webkit-box-shadow: -2px 2px 15px -6px rgba(99, 99, 99, 1);
-  -moz-box-shadow: -2px 2px 15px -6px rgba(99, 99, 99, 1);
-  box-shadow: -2px 2px 15px -6px rgba(99, 99, 99, 1);
-  transition: all 0.3s ease;
-  transition-delay: 0s;
-}
-
-li:hover {
-  transform: scale(1.05);
-  transition-delay: 0.5s;
-}
-
-li:hover .add{
-  width: 70px;
-  height: 70px;
-  font-size: 3.5rem;
-  transition-delay: 0.5s;
-}
-
-li a:active {
-  transform: scale(0.97);
-
 }
 
 .add {
   position: absolute;
-  background-color: var(--antoinette-gold);
-  width: 0px;
-  height: 0px;
+  bottom: 0;
+  left: 0;
+  padding: 8px 0;
+  width: 50%;
+  font-weight: bold;
+  z-index: 100;
+  cursor: pointer;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0;
+  transition: all 0.2s ease;
+}
+
+.add svg {
+  width: 0px;
+  height: 20px;
+  transition: all 0.2s ease;
+}
+
+.add:hover svg{
+  width: 20px;
+}
+
+.add span{
+  height: 18px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0;
+  transition: all 0.2s ease;
+  margin-right: 0;
+}
+
+.add:hover {
+  background-color: var(--antoinette-gold);
+  color: white;
+}
+
+.add:active {
+  opacity: 0.6;
+}
+
+.add:hover span{
+  width: fit-content;
+  margin-right: 8px;
+}
+
+.price {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 8px 0;
+  height: 34px;
+  width: 50%;
+  background-color: black;
   color: white;
   font-weight: bold;
-  border-radius: 70px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  transition-delay: 0s;
-  z-index: 100;
-  cursor: pointer;
-}
-
-li .add:hover {
-  transform: scale(1.1);
-  transition-delay: 0s;
-}
-
-li .add:active {
-  transform: scale(0.95);
+  vertical-align: bottom;
+  text-align: center;
 }
 
 li a img{
@@ -121,11 +145,16 @@ li a img{
   height: 7.5rem;
 }
 
-.price {
+.addtocart {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  font-weight: 600;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--antoinette-gold);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5rem;
 }
 
 .description {

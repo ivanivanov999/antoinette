@@ -1,5 +1,10 @@
 import { Schema, model } from "mongoose";
 
+export interface ItemAndSimilar {
+    item: Item;
+    similarItems: Item[];
+}
+
 export interface Item {
     id: string;
     name: string;

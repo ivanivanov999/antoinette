@@ -1,27 +1,11 @@
 import { Router } from 'express';
 import asyncHandler from 'express-async-handler';
-import { HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED } from '../constants/http_status';
+import { HTTP_BAD_REQUEST } from '../constants/http_status';
 import authMid from '../middlewares/auth.mid';
 import { OrderModel } from '../models/order.model';
-import { OrderStatus } from '../constants/order_status';
 
 const router = Router();
 router.use(authMid);
-
-router.get('/', asyncHandler(
-    async (req: any, res: any) => {
-        if (!req.user.isAdmin) {
-            res.status(HTTP_UNAUTHORIZED).send();
-        } else {
-            const orders = await OrderModel.find().or([
-                {status: OrderStatus.WAITING},
-                {status: OrderStatus.CONFIRMED},
-                {status: OrderStatus.SHIPPED}
-            ]).sort({createdAt: 'desc'});
-            res.send(orders);
-        }
-    }
-));
 
 router.post('/create', asyncHandler(
     async (req: any, res: any) => {

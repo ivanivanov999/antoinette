@@ -9,7 +9,7 @@ import { Item } from 'src/app/shared/models/item';
 })
 export class CarouselComponent {
 
-  @Input() items$: Observable<Item[]> | undefined;
+  @Input() items: Item[] = [];
 
   scrollLeft() {
     const container: any = document.querySelector('.scrollContainer');

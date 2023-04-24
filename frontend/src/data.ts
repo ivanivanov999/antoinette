@@ -2,10 +2,12 @@ import { Category } from "./app/shared/models/category";
 
 export const sample_items: Category[] = [
   {
+    id: '1',
     name: 'Сервизи за хранене',
     imageUrl: 'assets/serviz-za-hranene-gold.jpg',
   },
   {
+    id: '2',
     name: 'Прибори',
     imageUrl: 'assets/serviz-za-hranene-silver.webp',
   }

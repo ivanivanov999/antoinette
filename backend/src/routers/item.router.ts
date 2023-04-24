@@ -1,8 +1,9 @@
 import { Router } from "express";
 import { sample_items } from "../data";
 import asyncHandler from 'express-async-handler';
-import { ItemModel } from "../models/item.model";
+import { Item, ItemAndSimilar, ItemModel } from "../models/item.model";
 import { DeliveryModel } from "../models/delivery.model";
+import { HTTP_NOT_FOUND } from "../constants/http_status";
 
 const router = Router();
 
@@ -15,7 +16,7 @@ router.get('/', asyncHandler(
 
 router.get('/deliveries', asyncHandler(
     async (req, res) => {
-        const deliveries = await DeliveryModel.find().sort({name: 'asc'});
+        const deliveries = await DeliveryModel.find().sort({ name: 'asc' });
         res.send(deliveries);
     }
 ))
@@ -23,14 +24,14 @@ router.get('/deliveries', asyncHandler(
 router.get('/search/:searchTerm', asyncHandler(
     async (req, res) => {
         const searchRegex = new RegExp(req.params.searchTerm, 'i');
-        const items = await ItemModel.find({name: {$regex: searchRegex}});
+        const items = await ItemModel.find({ name: { $regex: searchRegex } });
         res.send(items);
     }
 ))
 
 router.get('/category/:category', asyncHandler(
     async (req, res) => {
-        const items = await ItemModel.find({category: req.params.category});
+        const items = await ItemModel.find({ category: req.params.category });
         res.send(items);
     }
 ))
@@ -44,7 +45,7 @@ router.get('/tags', asyncHandler(
             {
                 $group: {
                     _id: '$tags',
-                    count: {$sum: 1}
+                    count: { $sum: 1 }
                 }
             },
             {
@@ -54,7 +55,7 @@ router.get('/tags', asyncHandler(
                     count: '$count'
                 }
             }
-        ]).sort({count: -1});
+        ]).sort({ count: -1 });
 
         const all = {
             name: 'All',
@@ -68,15 +69,39 @@ router.get('/tags', asyncHandler(
 
 router.get('/tag/:tagName', asyncHandler(
     async (req, res) => {
-        const items = await ItemModel.find({tags: req.params.tagName});
+        const items = await ItemModel.find({ tags: req.params.tagName });
         res.send(items);
     }
 ))
 
 router.get('/:itemId', asyncHandler(
     async (req, res) => {
-        const item = await ItemModel.findById(req.params.itemId);
-        res.send(item);
+        if (req.params.itemId.length) {
+            const item = await ItemModel.findById(req.params.itemId);
+            if (item) {
+                const category = item.category;
+                const tags = item.tags;
+                const getItemsByTag = function () {
+                    if (tags.length) {
+                        return ItemModel.find({ $and: [{ tags: { $in: tags } }, { _id: { $ne: item.id } }] }).limit(4).sort({ createdAt: 'desc' })
+                    } else return []
+                }
+                let [itemsByCategory, itemsByTags] = await Promise.all([
+                    ItemModel.find({ $and: [{ category: category }, { _id: { $ne: item.id } }] }).limit(4).sort({ createdAt: 'desc' }),
+                    getItemsByTag()
+                ]);
+                const similarItems = Array.from(new Map([...itemsByTags, ...itemsByCategory].map((m) => [m.id, m])).values());
+                const response: ItemAndSimilar = {
+                    item: item,
+                    similarItems: similarItems
+                };
+                res.send(response);
+            } else {
+                res.status(HTTP_NOT_FOUND).send('Не е намерен артикул');
+            }
+        } else {
+            res.status(HTTP_NOT_FOUND).send('Липсва номер на артикул');
+        }
     }
 ))
 
