@@ -10,6 +10,7 @@ import sharp from 'sharp';
 import { OrderModel } from "../models/order.model";
 import { OrderStatus } from "../constants/order_status";
 import adminMid from "../middlewares/admin.mid";
+import { Category, CategoryModel } from "../models/category.model";
 
 /*
 //Cloudinary
@@ -62,7 +63,7 @@ router.get('/orders', asyncHandler(
 router.get('/orders/status/:status', asyncHandler(
   async (req: any, res: any) => {
     const status = req.params.status;
-    const orders = await OrderModel.find({ status: status}).sort({ updatedAt: 'asc' });
+    const orders = await OrderModel.find({ status: status }).sort({ updatedAt: 'asc' });
     res.send(orders);
   }
 ));
@@ -154,6 +155,26 @@ router.post('/newitem', upload.array('images'), asyncHandler(
         });
     }
     */
+  }
+));
+
+router.post('/newcategory', upload.single('image'), asyncHandler(
+  async (req: any, res: any) => {
+    const requestCategory = req.body;
+    let image: string = '';
+    await sharp(req.file.path).resize(200, 200).webp().toFile(`./outputs/${req.file.filename}-category.webp`);
+    unlink(req.file.path);
+    await bucket.upload(`./outputs/${req.file.filename}-category.webp`);
+    unlink(`./outputs/${req.file.filename}-category.webp`);
+    await bucket.file(`${req.file.filename}-category.webp`).getSignedUrl({
+      action: 'read',
+      expires: '03-09-2491'
+    }).then(async (signedUrls) => {
+      image = signedUrls[0];
+      const newItem = new CategoryModel({ imageUrl: image, name: requestCategory.name, rank: requestCategory.rank ? requestCategory.rank : 1 });
+      await newItem.save();
+      res.send(newItem);
+    });
   }
 ));
 

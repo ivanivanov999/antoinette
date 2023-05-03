@@ -1,7 +1,38 @@
+.delivery-container {
+  padding-top: 2.5rem;
+  background-color: black;
+}
+
+.freedelivery {
+  height: 2rem;
+  background-color: var(--antoinette-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
 .item-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2.5rem 0 5rem;
+}
+
+app-navigation {
+  width: 100%;
+  margin-bottom: 3rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid whitesmoke;
+}
+
+.similar-container {
+  display: flex;
   justify-content: center;
-  margin: 6rem 0;
+}
+
+app-title {
+  margin-bottom: 2rem;
 }
 
 .container {
@@ -152,7 +183,7 @@
   font-size: 1.5rem;
   text-align: center;
   border-radius: 5rem;
-  flex: 5.2;
+  flex: 3;
   transition: all 0.5s ease;
   transform: scale(1);
   padding: 0 1rem;
@@ -179,11 +210,16 @@
 }
 
 .add.active {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add.active svg {
+  height: 2rem;
+  aspect-ratio: 1/1;
+  margin-right: 1rem;
 }
 
 .add {

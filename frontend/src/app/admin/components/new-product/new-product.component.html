@@ -1,6 +1,8 @@
 <div class="checkout-container">
   <div class="container">
-    <form
+    <app-title [title]="'Нов продукт'"></app-title>
+    <div class="form-container">
+      <form
       [formGroup]="newItemForm"
       (ngSubmit)="uploadItem()"
       enctype="multipart/form-data"
@@ -112,6 +114,7 @@
           <img class="photo" *ngIf="imagesPreview[0]" [src]="image" alt="" />
         </ng-container>
       </div>
+    </div>
     </div>
   </div>
 </div>

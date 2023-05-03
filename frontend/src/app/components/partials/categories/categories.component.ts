@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
+import { CategoryService } from 'src/app/services/category.service';
 import { Category } from 'src/app/shared/models/category';
-import { sample_items } from 'src/data';
 
 @Component({
   selector: 'app-categories',
@@ -11,20 +12,12 @@ import { sample_items } from 'src/data';
 })
 export class CategoriesComponent {
 
-  @Input()
-  categories: Category[] = sample_items;
+  categories$: Observable<Category[]> | undefined;
+  activatedCategory: Observable<Params> = this.activatedRoute.params;
 
-  current: string = '';
+  constructor(private activatedRoute: ActivatedRoute, categoryService: CategoryService) {
 
-  constructor(activatedRoute: ActivatedRoute) {
-    activatedRoute.params.subscribe((params) => {
-      if (params['category']) {
-        this.current = params['category'];
-        setTimeout(() => {
-          this.activateCategory(this.current);
-        }, 100);
-      }
-    });
+    this.categories$ = categoryService.getAll();
   }
 
   activateCategory(category: string) {
@@ -35,5 +28,17 @@ export class CategoriesComponent {
     }
     const selected = document.getElementById(category);
     selected?.classList.add('active');
+  }
+
+  scrollLeft() {
+    const container: any = document.querySelector('.scrollContainer');
+    container!.scrollLeft -= 300;
+  }
+
+  scrollRight() {
+    const container = document.querySelector('.scrollContainer');
+    if (container!.scrollLeft < container!.scrollWidth) {
+      container!.scrollLeft += 300;
+    }
   }
 }

@@ -1,3 +1,8 @@
+app-title {
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+
 .checkout-container {
   display: flex;
   justify-content: center;
@@ -6,6 +11,11 @@
 
 .container {
   width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
   display: flex;
 }
 
@@ -31,12 +41,12 @@ form {
 }
 
 input {
-  border: 0.1rem solid black;
+  border: 2px solid var(--antoinette-gold);
   background-color: white;
   width: 100%;
   padding: 0.8rem 1rem;
   font-size: 1.2rem;
-  border-radius: 5rem;
+  border-radius: .3rem;
 }
 
 label {
@@ -116,9 +126,9 @@ li {
   display: flex;
   color: black;
   background-color: white;
-  padding: 0.5rem;
-  height: 8rem;
   width: 100%;
+  padding: 0.5rem;
+  height: 6.5rem;
 }
 
 li a:hover {
@@ -127,8 +137,8 @@ li a:hover {
 
 li img{
   object-fit: cover;
-  height: 7rem;
-  width: 7rem;
+  height: 100%;
+  aspect-ratio: 1/1;
 }
 
 li .content {

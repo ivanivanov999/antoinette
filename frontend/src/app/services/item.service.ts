@@ -7,17 +7,47 @@ import { DELIVERIES_URL, ITEMS_BY_CATEGORY_URL, ITEMS_BY_SEARCH_URL, ITEMS_BY_TA
 import { Delivery } from '../shared/models/delivery';
 import { ItemAndSimilar } from '../shared/models/item-and-similar';
 
+const FAVORITES_KEY = 'Favorites';
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
 
-  /*
-  private itemsSubject = new BehaviorSubject<Item[]>([]);
-  items: Observable<Item[]> = this.itemsSubject.asObservable();
-  */
+  private favoritesSubject = new BehaviorSubject<string[]>(this.getFavoritesFromLocalStorage());
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
+
+  public get favorites(): string[] {
+    return this.favoritesSubject.value;
+  }
+
+  addToFavorites(itemId: string): void {
+    let alreadyFavorite = this.favorites
+      .find(favorite => favorite === itemId);
+    if (alreadyFavorite) {
+      return;
+    }
+    let favorites = [...this.favorites, itemId];
+    this.favoritesSubject.next(favorites);
+    this.setFavoritesToLocalStorage();
+  }
+
+  removeFromFavorites(itemId: string): void {
+    let newFavorites = this.favorites.filter(item => item != itemId);
+    this.favoritesSubject.next(newFavorites);
+    this.setFavoritesToLocalStorage();
+  }
+
+  private setFavoritesToLocalStorage() {
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(this.favorites));
+  }
+
+  private getFavoritesFromLocalStorage(): string[] {
+    const userJson = localStorage.getItem(FAVORITES_KEY);
+    if (userJson) return JSON.parse(userJson) as string[];
+    return [];
+  }
 
   getCover(): Cover {
     return cover;

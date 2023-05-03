@@ -4,13 +4,14 @@
 }
 
 .inner-search-container {
-  width: 20rem;
-  height: 3rem;
+  width: 320px;
+  height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5rem;
+  position: relative;
 }
 
 input {
@@ -19,7 +20,7 @@ input {
   border: 1px solid rgb(45, 45, 45);
   background-color: transparent;
   color: white;
-  border-radius: 5rem 0 0 5rem;
+  border-radius: 100rem 0 0 100rem;
   font-size: 1rem;
   text-indent: 1rem;
 }
@@ -29,16 +30,16 @@ input:focus {
   outline: none;
 }
 
-button {
+button.search {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 70%;
   width: 20%;
-  color: white;
+  color: gray;
   background-color: rgb(40, 40, 40);
   font-weight: bold;
-  border-radius: 0 5rem 5rem 0;
+  border-radius: 0 100rem 100rem 0;
   padding: 0 1rem;
   border-width: 1px 1px 1px 0;
   border-style: solid;
@@ -46,6 +47,44 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  opacity: 1;
+button.search svg {
+  transition: all 0.2s ease;
+}
+
+button.search:hover svg {
+  color: white;
+  transform: scale(1.1);
+}
+
+button.search:active svg {
+  transform: scale(1);
+}
+
+button.delete {
+  position: absolute;
+  right: 64px;
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+button.delete svg {
+  transition: all 0.2s ease;
+  color: gray;
+}
+
+button.delete:hover svg{
+  transform: scale(1.2);
+  color: white;
+}
+
+button.delete:active svg {
+  transform: scale(1);
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
 }

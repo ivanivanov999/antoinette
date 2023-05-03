@@ -1,0 +1,14 @@
+.pagetitle {
+  color: var(--antoinette-gold);
+  font-weight: 600;
+  font-size: 2rem;
+  display: flex;
+}
+
+@media (max-width: 450px) {
+  .pagetitle {
+    justify-content: center;
+    text-align: center;
+  }
+}
+

@@ -1,7 +1,7 @@
 .category-container {
   padding-top: 1rem;
-  margin-bottom: 5rem;
   background-color: black;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .container {
@@ -11,11 +11,85 @@
 
 ul {
   width: 80%;
+  height: 13rem;
+  padding: 1.5rem 0;
+  position: relative;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
   list-style-type: none;
-  padding: 1.5rem;
   margin: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+}
+
+ul::-webkit-scrollbar {
+  display: none;
+}
+
+@media only screen and (max-width: 1400px) {
+  ul {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  ul {
+    width: 100%;
+  }
+}
+
+.side {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  height: 100%;
+  border: none;
+  padding: 0 2rem;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+  backdrop-filter: blur(0.5rem);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+@media only screen and (max-width: 1050px) {
+  .category-container {
+    padding-top: 0;
+  }
+
+  .side {
+    padding: 0 1rem;
+  }
+}
+
+.buttonarrow {
+  transition: all 0.3s ease;
+  font-size: 4rem;
+}
+
+.side:hover .buttonarrow {
+  transform: scale(1.2);
+}
+
+.side:active .buttonarrow {
+  transform: scale(0.9);
+}
+
+.scrollleft {
+  left: 0px;
+}
+
+.scrollright {
+  right: 0px;
 }
 
 li a {
@@ -26,10 +100,11 @@ li a {
   color: black;
   height: 10rem;
   min-width: 10rem;
+  margin: 0 1rem;
 }
 
 li a:hover img{
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 li a:active img {
@@ -51,12 +126,23 @@ li a img {
   width: 7rem;
   border-radius: 100rem;
   border: 3px solid white;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .name {
+  white-space: nowrap;
   text-align: center;
   margin-top: 1rem;
   color: white;
   font-weight: 600;
+  min-width: fit-content;
+}
+
+.freedelivery {
+  height: 2rem;
+  background-color: var(--antoinette-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }

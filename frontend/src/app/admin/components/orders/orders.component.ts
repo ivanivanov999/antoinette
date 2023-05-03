@@ -56,15 +56,8 @@ export class OrdersComponent {
     });
   }
 
-  selectFilters() {
-    document.querySelector('.currentFilter')?.classList.toggle('active');
-    document.querySelector('.otherFilters')?.classList.toggle('active');
-  }
-
   activateFilter(filter: string) {
     this.currentFilter = filter;
-    document.querySelector('.currentFilter')?.classList.remove('active');
-    document.querySelector('.otherFilters')?.classList.remove('active');
     this.orders$ = this.orderService.getOrdersByStatus(this.currentFilter);
   }
 }

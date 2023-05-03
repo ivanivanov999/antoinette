@@ -1,19 +1,44 @@
 .login-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 5rem;
+  align-items: center;
+  background-image: url('../../../../assets/cover.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
 }
 
 .container {
   width: 80%;
-  background-color: whitesmoke;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  margin: 5rem 0;
+}
+
+@media only screen and (max-width: 1400px) {
+  .container {
+    width: 90%;
+  }
 }
 
 form {
-  height: 100%;
+  height: fit-content;
   width: 50%;
+  min-width: 30rem;
+  background-color: rgba(0,0,0,.7);
+  backdrop-filter: blur(1rem);
+  padding: 3rem;
+  border-radius: 1rem;
+  animation-name: blurry;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes blurry {
+  0% {backdrop-filter: blur(1rem);}
+  50% {backdrop-filter: blur(0.5rem);}
+  100% {backdrop-filter: blur(1rem);}
 }
 
 .form {
@@ -22,16 +47,7 @@ form {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
-  padding: 5rem 6rem;
-}
-
-.form.login {
-  background-color: black;
-  color: white;
-}
-
-.form.login input{
-  border-color: var(--antoinette-gold);
+  color: white
 }
 
 .input-container {
@@ -41,12 +57,12 @@ form {
 }
 
 input {
-  border: 0.1rem solid black;
+  border: 2px solid var(--antoinette-gold);
   background-color: white;
   width: 100%;
   padding: 0.8rem 1rem;
   font-size: 1.2rem;
-  border-radius: 5rem;
+  border-radius: .3rem;
 }
 
 label {
@@ -67,10 +83,9 @@ label {
 
 .button button{
   margin-top: 2rem;
-  width: 70%;
   align-self: center;
   font-size: 1.3rem;
-  padding: 1rem 1rem;
+  padding: 1rem 6rem;
   border: none;
   background-color: var(--antoinette-gold);
   font-weight: 600;
@@ -78,6 +93,29 @@ label {
   border-radius: 5rem;
   transition: all 0.5s ease;
   color: white;
+}
+
+@media (max-width: 650px) {
+  form {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .button button {
+    padding: 1rem 6rem;
+  }
+}
+
+@media (max-width: 550px) {
+  form {
+    padding: 3rem 1rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .button button {
+    padding: 1rem 4rem;
+  }
 }
 
 .button button:hover {
@@ -100,5 +138,19 @@ label {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  align-self: center;
+  text-align: center;
+}
+
+.register {
+  margin-top: 2rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.5rem;
+}
+
+.register a {
+  color: var(--antoinette-gold);
+  font-weight: bold;
 }

@@ -1,3 +1,8 @@
+app-title {
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+
 .about-container {
   display: flex;
   justify-content: center;
@@ -6,8 +11,19 @@
 
 .container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 80%;
+}
+
+@media only screen and (max-width: 1400px) {
+  .container {
+    width: 90%;
+  }
+}
+
+.inner-about-container {
+  display: flex;
+  justify-content: space-between;
   background-color: whitesmoke;
 }
 

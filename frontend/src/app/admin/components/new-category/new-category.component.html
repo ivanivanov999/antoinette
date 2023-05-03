@@ -1,0 +1,53 @@
+<div class="checkout-container">
+  <div class="container">
+    <app-title [title]="'Нова категория'"></app-title>
+    <div class="form-container">
+      <form
+      [formGroup]="newCategoryForm"
+      (ngSubmit)="uploadCategory()"
+      enctype="multipart/form-data"
+    >
+      <div class="form">
+        <div class="input-container">
+          <label>Име*</label>
+          <div class="input">
+            <input type="text" placeholder="Име" formControlName="name" />
+          </div>
+          <div class="error-list" *ngIf="fc['name'].errors && isSubmitted">
+            <div *ngIf="fc['name'].errors['required']">Задължително поле</div>
+          </div>
+        </div>
+        <div class="input-container">
+          <label>Ранг</label>
+          <div class="input">
+            <input type="number" placeholder="Ранг" formControlName="rank" />
+          </div>
+        </div>
+        <div class="input-container">
+          <div class="file-container">
+            <label class="fileInput" for="fileInput">Избери снимка*</label>
+            <input
+              #fileInput
+              id="fileInput"
+              type="file"
+              accept="image/*"
+              (change)="showImage($event)"
+            />
+            <div class="removeImage" (click)="removeImage()">-</div>
+          </div>
+        </div>
+        <div class="button">
+          <button type="submit">Добави категория</button>
+        </div>
+      </div>
+    </form>
+    <div class="photo-container">
+      <img
+        class="main-photo"
+        *ngIf="imagePreview"
+        [src]="imagePreview"
+      />
+    </div>
+    </div>
+  </div>
+</div>

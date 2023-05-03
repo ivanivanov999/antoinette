@@ -50,6 +50,16 @@ header {
   text-decoration: none;
 }
 
+@media only screen and (max-width: 550px) {
+  .divider {
+    display: none;
+  }
+
+  .subtitle {
+    display: none;
+  }
+}
+
 a {
   color: white;
   display: inline-block;
@@ -85,7 +95,6 @@ nav {
 .cart {
   display: flex;
   align-items: center;
-  padding: 1rem;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -99,6 +108,7 @@ nav {
   color: white;
   font-weight: 600;
   margin-left: -0.5rem;
+  margin-right: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,8 +116,8 @@ nav {
 }
 
 .carticon {
-  margin-left: -0.2rem;
   cursor: pointer;
+  display: none;
 }
 
 .quantity {
@@ -151,7 +161,6 @@ nav {
   position: absolute;
   top: 3rem;
   left: 0;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(1rem);
   background: rgba(0, 0, 0, 0.7);
   font-weight: 600;
@@ -162,6 +171,11 @@ nav {
 .menu-container {
   width: 80%;
   display: flex;
+  justify-content: space-between;
+}
+
+.menu.active {
+  height: 2.5rem;
 }
 
 @media only screen and (max-width: 1400px) {
@@ -170,13 +184,38 @@ nav {
   }
 }
 
+@media only screen and (max-width: 1050px) {
+  .search {
+    display: none;
+  }
+
+  .menu {
+    height: 2.5rem;
+  }
+
+  .menu.active {
+    height: 0;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .carticon {
+    display: inline-block;
+  }
+  .cart a.cartname{
+    display: none;
+  }
+  .cart a.carticon:hover {
+    border: none;
+  }
+
+}
+
 .navmenu {
-  flex:6;
   display: flex;
 }
 
 .usermenu {
-  flex:4;
   display: flex;
   justify-content: flex-end;
 }
@@ -185,10 +224,6 @@ nav {
   font-size: 0.8rem;
   display: flex;
   align-items: center;
-  height: 2.5rem;
-}
-
-.menu.active {
   height: 2.5rem;
 }
 

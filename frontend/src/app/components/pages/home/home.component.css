@@ -1,51 +1,87 @@
-.highlight {
-  width: 100%;
-  background-color: black;
-  color: white;
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  background-image: url('../../../../assets/cover.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.container {
+  margin: 5rem 0;
+  width: 60%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 5rem 0 3rem 0;
+  position: relative;
 }
 
-.highlightphoto {
+.products {
+  position: absolute;
+  bottom: 8vh;
+  padding: 1rem 2rem;
   width: 80%;
-  height: 40rem;
-}
-
-@media only screen and (max-width: 1400px) {
-  .highlightphoto {
-    width: 90%;
-  }
-}
-
-.highlightphoto img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.quote {
-  width: 80%;
-  background-color: white;
-  color: black;
-  padding: 2rem 5rem;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  min-height: 6rem;
+  max-width: 27rem;
   text-align: center;
-  font-size: 1.8rem;
-  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, .6);
+  backdrop-filter: blur(1rem);
+  border-radius: 100rem;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation-name: blurry;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+.products span {
+  transition:all 0.3s ease;
+}
+
+.products:hover span {
+  transform: scale(1.05);
+}
+
+.products:active span {
+  transform: scale(1);
+}
+
+@keyframes blurry {
+  0% {backdrop-filter: blur(1rem);}
+  50% {backdrop-filter: blur(0.3rem);}
+  100% {backdrop-filter: blur(1rem);}
 }
 
 @media only screen and (max-width: 1400px) {
-  .quote {
+  .container {
     width: 90%;
-    padding: 2rem;
   }
 }
 
-.quote .quoteauthor {
-  padding-top: 1.5rem;
-  font-size: 1.2rem;
-  font-family: "Comfortaa", "sans-serif";
-  color: var(--antoinette-gold);
+.shortcuts {
+  width: 100%;
+  height: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: minmax(10rem, auto);
+}
+
+.shortcut {
+  background: rgba(0, 0, 0, .7);
+  backdrop-filter: blur(1rem);
+  border-radius: 1rem;
+  margin: 1rem
+}
+
+.shortcut1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
 }

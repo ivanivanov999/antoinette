@@ -1,12 +1,14 @@
-<div class="highlight">
-  <div class="highlightphoto">
-    <img [src]="cover.imageUrl" alt="">
-  </div>
-  <div class="quote">
-    {{cover.quote}}
-    <div class="quoteauthor">
-      {{cover.author}}
+<div class="home-container">
+  <div class="container">
+    <!--
+      <div class="shortcuts">
+      <div class="shortcut shortcut1">a</div>
+      <div class="shortcut shortcut2">b</div>
+      <div class="shortcut shortcut3">c</div>
     </div>
+    -->
+    <a class="products" routerLink="/category">
+      <span>Виж всички продукти</span>
+    </a>
   </div>
 </div>
-<app-title [title]="'Избрани от нас'"></app-title>

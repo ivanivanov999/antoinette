@@ -14,11 +14,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CheckoutComponent } from './components/pages/checkout/checkout.component';
 import { FooterComponent } from './components/partials/footer/footer.component';
-import { TitleComponent } from './components/partials/title/title.component';
 import { CategoryComponent } from './components/pages/category/category.component';
 import { CategoriesComponent } from './components/partials/categories/categories.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { OrdersComponent } from './components/pages/orders/orders.component';
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 import { LoadingComponent } from './components/partials/loading/loading.component';
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
@@ -28,6 +26,10 @@ import { CarouselComponent } from './components/partials/carousel/carousel.compo
 import { SearchComponent } from './components/partials/search/search.component';
 import { AllproductsComponent } from './components/pages/allproducts/allproducts.component';
 import { ProductsComponent } from './components/partials/products/products.component';
+import { SharedModule } from './shared/shared.module';
+import { MyProfileComponent } from './components/pages/my-profile/my-profile.component';
+import { RegisterComponent } from './components/pages/register/register.component';
+import { NavigationComponent } from './components/partials/navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -39,17 +41,18 @@ import { ProductsComponent } from './components/partials/products/products.compo
     LoginComponent,
     CheckoutComponent,
     FooterComponent,
-    TitleComponent,
     CategoryComponent,
     CategoriesComponent,
-    OrdersComponent,
     LoadingComponent,
     DecorComponent,
     AboutComponent,
     CarouselComponent,
     SearchComponent,
     AllproductsComponent,
-    ProductsComponent
+    ProductsComponent,
+    MyProfileComponent,
+    RegisterComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { ProductsComponent } from './components/partials/products/products.compo
       positionClass: 'toast-bottom-right',
       newestOnTop: false,
       toastClass: 'customToast ngx-toastr'
-    })
+    }),
+    SharedModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

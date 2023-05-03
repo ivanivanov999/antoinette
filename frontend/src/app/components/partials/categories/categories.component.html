@@ -1,14 +1,29 @@
 <div class="category-container">
   <div class="container">
-    <ul>
-      <li *ngFor="let item of categories; let i = index">
-        <a routerLink="/category/{{ item.name }}" id="{{item.name}}" (click)="activateCategory(item.name)" class="category">
-          <img [src]="item.imageUrl" [alt]="item.name" />
-          <div class="name">
-            {{ item.name | uppercase}}
+    <ul *ngIf="activatedCategory | async as activatedCategory" class="scrollContainer">
+      <ng-container *ngIf="categories$ | async as categories">
+        <button class="scrollleft side" (click)="scrollLeft()">
+          <div class="buttonarrow">
+            <span>&#60;</span>
           </div>
-        </a>
-      </li>
+        </button>
+        <li *ngFor="let item of categories; let i = index">
+          <a routerLink="/category/{{ item.name }}" id="{{item.name}}" (click)="activateCategory(item.name)" class="category" [ngClass]="{'active': item.name === activatedCategory['category']}">
+            <img [src]="item.imageUrl" [alt]="item.name" />
+            <div class="name">
+              {{ item.name | uppercase}}
+            </div>
+          </a>
+        </li>
+        <button class="scrollright side" (click)="scrollRight()">
+          <div class="buttonarrow">
+            <span>&#62;</span>
+          </div>
+        </button>
+      </ng-container>
     </ul>
   </div>
+</div>
+<div class="freedelivery">
+  Безплатна доставка на всяка поръчка над 100лв.
 </div>

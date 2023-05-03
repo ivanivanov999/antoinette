@@ -1,0 +1,6 @@
+<div class="navigation">
+  <div class="navigationPath" *ngFor="let path of fullPath.urlString; let i = index">
+    <a class="url" routerLink="{{fullPath.urlPath[i]}}" [ngClass]="{active: i === fullPath.urlString.length - 1}">{{path}}</a>
+    <span class="divider" *ngIf="i < fullPath.urlString.length - 1"> > </span>
+  </div>
+</div>

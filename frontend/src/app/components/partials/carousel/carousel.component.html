@@ -7,7 +7,7 @@
     </button>
     <li *ngFor="let item of items">
       <a routerLink="/item/{{ item.id }}">
-        <img [src]="item.imageUrl[0]" [alt]="item.name" loading="lazy"/>
+        <img [src]="item.imageUrl[0]" [alt]="item.name" loading="lazy" draggable="false"/>
         <div class="content">
           <div class="name">
             {{ item.name }}

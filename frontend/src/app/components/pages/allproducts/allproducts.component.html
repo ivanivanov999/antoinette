@@ -1,7 +1,16 @@
 <app-categories></app-categories>
-<ng-container *ngIf="activated | async as activated">
-  <app-title [title]="'Резултати за: ' + '&quot;' + activated['searchTerm'] + '&quot;'"></app-title>
-</ng-container>
+<div class="title-container" *ngIf="activated | async as activated">
+  <div class="inner-title-container">
+    <app-title [title]="'Резултати за: ' + '&quot;' + activated['searchTerm'] + '&quot;'"></app-title>
+    <div class="filter-container">Подреди по:
+      <select #s id="s" class="currentFilter" (change)="activateFilter(s.value)">
+        <ng-container *ngFor="let filter of filters; let i = index">
+          <option class="filter" [value]="filter">{{filter}}</option>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+</div>
 <ng-container *ngIf="items$ | async as items">
   <app-products [items]="items"></app-products>
 </ng-container>

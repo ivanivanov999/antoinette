@@ -14,12 +14,13 @@ import { User } from 'src/app/shared/models/user';
 export class HeaderComponent {
   cart$: Observable<Cart>;
   user$: Observable<User>;
+  adminMode: boolean = false;
+
   constructor(private cartService: CartService, private userService: UserService) {
     this.cart$ = this.cartService.getCartObservable();
     this.user$ = userService.getUserObservable();
     //this.initialize();
   }
-  adminMode: boolean = false;
 
   logout() {
     this.userService.logout();

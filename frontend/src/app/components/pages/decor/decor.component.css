@@ -7,7 +7,53 @@
 
 .container {
   margin: 5rem 0;
-  width: 80%;
+  width: 100%;
   height: 100%;
-  color: white;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5rem;
+  align-items: center;
+}
+
+.card {
+  width: 80%;
+  height: 35rem;
+  display: flex;
+}
+
+.card:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.image {
+  flex: 2;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: white;
+}
+
+.title {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }

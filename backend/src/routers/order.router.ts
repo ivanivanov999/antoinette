@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import asyncHandler from 'express-async-handler';
-import { HTTP_BAD_REQUEST } from '../constants/http_status';
+import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND } from '../constants/http_status';
 import authMid from '../middlewares/auth.mid';
 import { OrderModel } from '../models/order.model';
 
@@ -20,6 +20,15 @@ router.post('/create', asyncHandler(
         await newOrder.save();
         res.send(newOrder);
 
+    }
+));
+
+router.get('/myorders', asyncHandler(
+    async (req: any, res: any) => {
+        const orders = await OrderModel.find({user: req.user.id}).sort({ createdAt: 'desc' });
+        if (orders) {
+            res.send(orders);
+        } else res.status(HTTP_NOT_FOUND).send(`Няма намерени поръчки на потребител с имейл ${req.user.email}`);
     }
 ));
 

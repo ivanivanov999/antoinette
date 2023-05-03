@@ -1,7 +1,25 @@
+.title-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+}
+
+.inner-title-container {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 1400px) {
+  .inner-title-container {
+    width: 90%;
+  }
+}
+
 .order-container {
   display: flex;
   justify-content: center;
-  margin: 5rem 0;
 }
 
 .container {
@@ -13,10 +31,7 @@
 
 .filter-container {
   display: flex;
-  align-self: flex-start;
   align-items: center;
-  margin-bottom: 3rem;
-  position: relative;
   font-size: 1.2rem;
 }
 

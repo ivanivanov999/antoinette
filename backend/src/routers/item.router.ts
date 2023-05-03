@@ -1,7 +1,6 @@
 import { Router } from "express";
-import { sample_items } from "../data";
 import asyncHandler from 'express-async-handler';
-import { Item, ItemAndSimilar, ItemModel } from "../models/item.model";
+import { ItemAndSimilar, ItemModel } from "../models/item.model";
 import { DeliveryModel } from "../models/delivery.model";
 import { HTTP_NOT_FOUND } from "../constants/http_status";
 

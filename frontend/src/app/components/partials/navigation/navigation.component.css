@@ -1,0 +1,20 @@
+.navigation {
+  display: flex;
+  font-size: 1.2rem;
+}
+
+.navigationPath {
+  display: flex;
+}
+
+.divider {
+  margin: 0 1rem;
+}
+
+a.url {
+  color: inherit;
+}
+
+a.url.active {
+  font-weight: bold;
+}

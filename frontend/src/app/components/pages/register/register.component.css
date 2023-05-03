@@ -1,0 +1,174 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  background-image: url('../../../../assets/cover.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.container {
+  margin: 5rem 0;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1400px) {
+  .container {
+    width: 90%;
+  }
+}
+
+form {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  row-gap: 2rem;
+  background-color: rgba(0,0,0,.7);
+  backdrop-filter: blur(1rem);
+  border-radius: 1rem;
+  padding: 3rem;
+}
+
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 3rem;
+}
+
+@media only screen and (max-width: 1050px) {
+  .form-container {
+    padding: 0 1rem;
+  }
+}
+
+.form {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  color: white
+}
+
+@media (max-width: 900px) {
+  .form-container {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2rem;
+  }
+
+  .form {
+    width: 90%;
+  }
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+input, textarea {
+  border: 2px solid var(--antoinette-gold);
+  background-color: white;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.2rem;
+  border-radius: .3rem;
+  resize: none;
+  font-family: Arial
+}
+
+label {
+  align-self: flex-start;
+  width: 100%;
+  font-size: 1.3rem;
+  padding-left: 1rem;
+}
+
+.input {
+  width: 100%;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+
+.button button{
+  margin-top: 2rem;
+  align-self: center;
+  font-size: 1.3rem;
+  padding: 1rem 4rem;
+  border: none;
+  background-color: var(--antoinette-gold);
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 5rem;
+  transition: all 0.5s ease;
+  color: white;
+}
+
+@media (max-width: 650px) {
+  .form {
+    width: 100%;
+  }
+
+  .button button {
+    padding: 1rem 2rem;
+  }
+
+  .form-container {
+    padding: 0;
+  }
+}
+
+@media (max-width: 550px) {
+  form {
+    padding: 3rem 1rem;
+  }
+}
+
+.button button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.button button:active {
+  transform: scale(0.95);
+}
+
+.error-list {
+  padding: 0 1rem;
+  color: rgb(164, 3, 3);
+  font-weight: 600;
+}
+
+.title {
+  color: var(--antoinette-gold);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.register {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.5rem;
+}
+
+.register a {
+  color: var(--antoinette-gold);
+  font-weight: bold;
+}

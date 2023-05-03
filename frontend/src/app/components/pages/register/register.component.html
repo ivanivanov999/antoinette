@@ -1,0 +1,94 @@
+<div class="register-container">
+  <div class="container">
+    <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+      <div class="title">Нов потребител</div>
+      <div class="form-container">
+        <div class="form">
+          <div class="input-container">
+            <label>Име и фамилия</label>
+            <div class="input">
+              <input type="text" placeholder="Име и фамилия" formControlName="name" autocomplete="name"/>
+            </div>
+            <div class="error-list" *ngIf="registerFc['name'].errors && registerIsSubmitted">
+              <div *ngIf="registerFc['name'].errors['required']">Задължително поле</div>
+            </div>
+          </div>
+          <div class="input-container">
+            <label>Имейл</label>
+            <div class="input">
+              <input type="email" placeholder="Имейл" formControlName="email" autocomplete="email"/>
+            </div>
+            <div class="error-list" *ngIf="registerFc['email'].errors && registerIsSubmitted">
+              <div *ngIf="registerFc['email'].errors['required']">Задължително поле</div>
+              <div *ngIf="registerFc['email'].errors['email']">Невалиден имейл адрес</div>
+            </div>
+          </div>
+          <div class="input-container">
+            <label>Парола</label>
+            <div class="input">
+              <input
+                type="password"
+                placeholder="Парола"
+                formControlName="password"
+                autocomplete="off"
+              />
+            </div>
+            <div class="error-list" *ngIf="registerFc['password'].errors && registerIsSubmitted">
+              <div *ngIf="registerFc['password'].errors['required']">Задължително поле</div>
+              <div *ngIf="registerFc['password'].errors['minlength']">Паролата трябва да съдържа най-малко 6 символа</div>
+            </div>
+          </div>
+          <div class="input-container">
+            <label>Потвърдете паролата</label>
+            <div class="input">
+              <input
+                type="password"
+                placeholder="Потвърдете паролата"
+                formControlName="confirmPassword"
+                autocomplete="off"
+              />
+            </div>
+            <div class="error-list" *ngIf="registerFc['confirmPassword'].errors && registerIsSubmitted">
+              <div *ngIf="registerFc['confirmPassword'].errors['required']">Задължително поле</div>
+              <div *ngIf="registerFc['confirmPassword'].errors['notMatch']">Паролите не съвпадат</div>
+            </div>
+          </div>
+        </div>
+        <div class="form">
+          <div class="input-container">
+            <label>Адрес за доставка</label>
+            <div class="input">
+              <textarea
+                class="address"
+                placeholder="Адрес за доставка"
+                formControlName="address"
+                rows="4"
+                autocomplete="street-address"
+              ></textarea>
+            </div>
+            <div class="error-list" *ngIf="registerFc['address'].errors && registerIsSubmitted">
+              <div *ngIf="registerFc['address'].errors['required']">Задължително поле</div>
+              <div *ngIf="registerFc['address'].errors['minlength']">Адресът трябва да съдържа най-малко 10 символа</div>
+            </div>
+          </div>
+          <div class="input-container">
+            <label>Телефон за връзка</label>
+            <div class="input">
+              <input type="tel" placeholder="Телефон за връзка" formControlName="phone" autocomplete="tel"/>
+            </div>
+            <div class="error-list" *ngIf="registerFc['phone'].errors && registerIsSubmitted">
+              <div *ngIf="registerFc['phone'].errors['required']">Задължително поле</div>
+              <div *ngIf="registerFc['phone'].errors['minlength']">Невалиден мобилен номер</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="button">
+        <button class="submit" type="submit">Регистрирай се</button>
+      </div>
+      <div class="register">Вече имате акаунт?
+        <a routerLink="/login">Влезте в профила си тук</a>
+      </div>
+    </form>
+  </div>
+</div>
